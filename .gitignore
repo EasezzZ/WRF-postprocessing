@@ -15,3 +15,11 @@
 *.exe
 *.out
 *.app
+wrfpp
+
+#temp
+*~
+*.kate-swp
+
+#demo files
+*.nc
