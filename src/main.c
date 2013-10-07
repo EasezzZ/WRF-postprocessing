@@ -11,6 +11,8 @@ int main(int argc, char *argv[]) {
   load_UV10();
   
   write_XLATLONG();
+  write_UV10();
+  write_UV10_pol();
   
   free_UV10();
   free_XLATLONG();

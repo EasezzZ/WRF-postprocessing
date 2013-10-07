@@ -56,6 +56,77 @@ void load_UV10 () {
 
 void write_UV10 () {
   
+  int nc_id;
+  
+  int dim_ids[2];  
+  
+  int u10_id;
+  int v10_id;
+  
+  static char title[] = "example netCDF dataset";
+
+  
+  nc_error(nc_create("out/wind/uv10.vec.nc", 0, &nc_id));
+  
+  nc_error(nc_def_dim(nc_id, "south_north", nSN, &dim_ids[0]));
+  nc_error(nc_def_dim(nc_id, "west_east", nWE, &dim_ids[1]));
+  
+  nc_error(nc_def_var (nc_id, "u10", NC_FLOAT, 2, dim_ids, &u10_id));
+  nc_error(nc_def_var (nc_id, "v10", NC_FLOAT, 2, dim_ids, &v10_id));
+  
+  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "title", strlen(title), title));
+  
+  nc_error(nc_enddef(nc_id));
+  
+  nc_error(nc_put_var_float(nc_id, u10_id, U10));
+  nc_error(nc_put_var_float(nc_id, v10_id, V10));
+  
+
+  
+}
+
+void write_UV10_pol () {
+  
+  int nc_id;
+  
+  int dim_ids[2];  
+  
+  int dir10_id;
+  int speed10_id;
+  
+  static char title[] = "example netCDF dataset";
+  
+  
+  float * dir10 = malloc (nWE * nSN * sizeof(float));
+  if (dir10==NULL) {fprintf(stderr, "uv10.c : Cannot allocate DIR10\n"); exit(-1);}
+  float * speed10 = malloc (nWE * nSN * sizeof(float));
+  if (speed10==NULL) {fprintf(stderr, "uv10.c : Cannot allocate SPEED10\n"); exit(-1);}
+  
+  int i;
+  int nvals = nWE * nSN;
+  for (i=0; i<nvals; i++) {
+    dir10[i] = fmod( (atan2(V10[i], U10[i]) * 180 / M_PI + 360) , 360);
+    speed10[i] = sqrt( pow(U10[i],2) + pow(V10[i],2) );
+  }
+  
+  nc_error(nc_create("out/wind/uv10.pol.nc", 0, &nc_id));
+  
+  nc_error(nc_def_dim(nc_id, "south_north", nSN, &dim_ids[0]));
+  nc_error(nc_def_dim(nc_id, "west_east", nWE, &dim_ids[1]));
+  
+  nc_error(nc_def_var (nc_id, "dir10", NC_FLOAT, 2, dim_ids, &dir10_id));
+  nc_error(nc_def_var (nc_id, "speed10", NC_FLOAT, 2, dim_ids, &speed10_id));
+  
+  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "title", strlen(title), title));
+  
+  nc_error(nc_enddef(nc_id));
+  
+  nc_error(nc_put_var_float(nc_id, dir10_id, dir10));
+  nc_error(nc_put_var_float(nc_id, speed10_id, speed10));
+  
+    
+  free (dir10);
+  free (speed10);
   
 }
 
