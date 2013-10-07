@@ -19,6 +19,8 @@ void ncout_init (const char* cat, const char* fname, int dims, int *nc_idp, int 
   char *path = malloc(len);
   snprintf(path, len, "%s/%s.%s.%s.nc", dir, wDOMAIN, fname, wFRAME);
   
+  fprintf(stdout, "* output %s/%s\n",cat, fname);
+  
   nc_error(nc_create(path, 0, nc_idp));  
   
   free (dir);
@@ -40,29 +42,25 @@ void ncout_init (const char* cat, const char* fname, int dims, int *nc_idp, int 
 
 
 void ncout_set_global_meta (int nc_id) {
-  static char title[]         = "OpenMeteoData WRF-Europe model";
-  static char institution[]   = "OpenMeteoData http://openmeteodata.org";
-  static char source[]        = "WRF-ARW initialized from NCEP GFS + OMD Post-processing";
-  static char history[]       = "";
-  static char references[]    = "http://wiki.openmeteodata.org/wiki/OMD_WRF_Europe";
-  static char comment[]       = "";
-  static char conventions[]   = "CF-1.6";
-  static char license[]       = "ODC-By http://opendatacommons.org/licenses/by/summary/";
 
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "title", strlen(title), title));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "institution", strlen(institution), institution));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "source", strlen(source), source));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "history", strlen(history), history));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "references", strlen(references), references));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "comment", strlen(comment), comment));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "Conventions", strlen(conventions), conventions));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "license", strlen(license), license));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "run", strlen(wRUN), wRUN));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "run_start", strlen(wRUN_START), wRUN_START));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "domain", strlen(wDOMAIN), wDOMAIN));
-  nc_error(nc_put_att_text (nc_id, NC_GLOBAL, "frame", strlen(wFRAME), wFRAME));
+  ncout_set_meta (nc_id, NC_GLOBAL, "title", "OpenMeteoData WRF-Europe model");
+  ncout_set_meta (nc_id, NC_GLOBAL, "institution", "OpenMeteoData http://openmeteodata.org");
+  ncout_set_meta (nc_id, NC_GLOBAL, "source", "WRF-ARW initialized from NCEP GFS + OMD Post-processing");
+  //ncout_set_meta (nc_id, NC_GLOBAL, "history", "");
+  ncout_set_meta (nc_id, NC_GLOBAL, "references", "http://wiki.openmeteodata.org/wiki/OMD_WRF");
+  //ncout_set_meta (nc_id, NC_GLOBAL, "comment", "");
+  ncout_set_meta (nc_id, NC_GLOBAL, "conventions", "CF-1.6");
+  ncout_set_meta (nc_id, NC_GLOBAL, "license", "ODC-By http://opendatacommons.org/licenses/by/summary/");
+  ncout_set_meta (nc_id, NC_GLOBAL, "run", wRUN);
+  ncout_set_meta (nc_id, NC_GLOBAL, "run_start", wRUN_START);
+  ncout_set_meta (nc_id, NC_GLOBAL, "frame", wFRAME);
+  ncout_set_meta (nc_id, NC_GLOBAL, "domain", wDOMAIN);
+  
 }
 
+void ncout_set_meta (int nc_id, int var_id, const char *name, const char * text) {
+    nc_error(nc_put_att_text (nc_id, var_id, name, strlen(text), text));
+}
 
 void ncout_close (int nc_id) {
   nc_error(nc_close(nc_id));
