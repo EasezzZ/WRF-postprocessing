@@ -13,8 +13,8 @@ void load_UV10 () {
   V10 = malloc (nWE * nSN * sizeof(float));
   if (V10==NULL) {fprintf(stderr, "uv10.c : Cannot allocate V10\n"); exit(-1);}
 
-  nc_get_var_float(wrfout_id, u10_id, U10);
-  nc_get_var_float(wrfout_id, v10_id, V10);
+  nc_error(nc_get_var_float(wrfout_id, u10_id, U10));
+  nc_error(nc_get_var_float(wrfout_id, v10_id, V10));
   
   double deg2rad = M_PI/180;
   
@@ -81,6 +81,7 @@ void write_UV10 () {
   nc_error(nc_put_var_float(nc_id, u10_id, U10));
   nc_error(nc_put_var_float(nc_id, v10_id, V10));
   
+  nc_error(nc_close(nc_id));
 
   
 }
@@ -127,6 +128,8 @@ void write_UV10_pol () {
     
   free (dir10);
   free (speed10);
+  
+  nc_error(nc_close(nc_id));
   
 }
 

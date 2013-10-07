@@ -1,21 +1,25 @@
 #include "io/wrfout.h"
 
-#include "fields/xlatlong.h"
-#include "fields/wind/uv10.h"
+#include "fields/grid/latlon.h"
+#include "fields/grid/topo.h"
+//#include "fields/wind/uv10.h"
 
 int main(int argc, char *argv[]) {
   
   open_wrfout("wrfout-test.nc");
   
-  load_XLATLONG();
-  load_UV10();
+  load_LATLON();
+  load_TOPO();
+//  load_UV10();
   
-  write_XLATLONG();
-  write_UV10();
-  write_UV10_pol();
+  write_LATLON();
+  write_TOPO();
+//  write_UV10();
+//  write_UV10_pol();
   
-  free_UV10();
-  free_XLATLONG();
+  free_LATLON();
+  free_TOPO();
+//  free_UV10();
   
   close_wrfout();
   

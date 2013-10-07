@@ -4,14 +4,17 @@
 
 int wrfout_id;
 
-size_t nWE; // west_east
-size_t nSN; // south_north
-size_t nBT; // bottom_top
+size_t wNX; // west_east
+size_t wNY; // south_north
+size_t wNZ; // bottom_top
 
-int MAP_PROJ;
-int TRUELAT1;
-int TRUELAT2;
-int CEN_LON;
+size_t wN2D;
+size_t wN3D;
+
+int wMAP_PROJ;
+int wTRUELAT1;
+int wTRUELAT2;
+int wCEN_LON;
 
 void open_wrfout (const char *path);
 void close_wrfout ();
