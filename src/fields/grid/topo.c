@@ -7,7 +7,7 @@ void load_TOPO () {
   nc_error(nc_inq_varid (wrfout_id, "HGT", &topo_id));
   
   wTOPO = malloc (wNX * wNY * sizeof(float));
-  if (wTOPO==NULL) {fprintf(stderr, "terrain.c : Cannot allocate wTOPO\n"); exit(-1);}
+  if (wTOPO==NULL) {fprintf(stderr, "topo.c : Cannot allocate wTOPO\n"); exit(-1);}
 
   nc_error(nc_get_var_float(wrfout_id, topo_id, wTOPO));
 
@@ -20,9 +20,9 @@ void write_TOPO () {
   int dim_ids[2];  
   int topo_id;
   
-  ncout_init("out/terrain.nc", DIM_X | DIM_Y, &nc_id, dim_ids);
+  ncout_init("grid", "topo", DIM_X | DIM_Y, &nc_id, dim_ids);
   
-  nc_error(nc_def_var (nc_id, "terrain", NC_FLOAT, 2, dim_ids, &topo_id));
+  nc_error(nc_def_var (nc_id, "topo", NC_FLOAT, 2, dim_ids, &topo_id));
 
   ncout_set_global_meta (nc_id);
   nc_error(nc_enddef(nc_id));

@@ -1,8 +1,28 @@
 #include "wrfout.h"
 
-void open_wrfout (const char *path) {
+void open_wrfout (int argc, char *argv[]) {
+  // ./wrfpp domain 2013-10-07_12 2013-10-08_04:00:00 2013-10-08_03:00:00
+
+  
+  wDOMAIN = argv[1];
+  wRUN  = argv[2];
+  wFRAME  = argv[3];
+  if (argc == 5) {
+    wFRAME_LAST = argv[4];
+  } else {
+    wFRAME_LAST = NULL;
+  }
+  
+  int len = (strlen(wDOMAIN)*2+strlen(wRUN)+strlen(wFRAME)+10)* sizeof(char);
+  char *path = malloc(len);
+
+  snprintf(path, len, "in/%s/%s/%s_%s.nc", wDOMAIN, wRUN, wDOMAIN, wFRAME);
+  
+  fprintf(stdout, "Input file : %s\n", path);
   
   nc_error(nc_open(path, NC_NOWRITE, &wrfout_id));
+  
+  free (path);
   
   int X_id; // west_east
   int Y_id; // south_north
@@ -35,11 +55,17 @@ void open_wrfout (const char *path) {
   nc_error(nc_get_att_int(wrfout_id, NC_GLOBAL, "TRUELAT2", &wTRUELAT2));
   nc_error(nc_get_att_int(wrfout_id, NC_GLOBAL, "CEN_LON", &wCEN_LON));
   
-  
+  int run_start_len;
+  nc_error(nc_inq_attlen (wrfout_id, NC_GLOBAL, "SIMULATION_START_DATE", &run_start_len));
+  wRUN_START = malloc((run_start_len+1) * sizeof(char));
+  nc_error(nc_get_att_text(wrfout_id, NC_GLOBAL, "SIMULATION_START_DATE", wRUN_START));
+  wRUN_START[run_start_len] = '\0';
+    
 }
 
 
 
 void close_wrfout () {
    nc_error(nc_close(wrfout_id));
+   free(wRUN_START);
 }

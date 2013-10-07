@@ -11,4 +11,5 @@ gcc -c src/func/interpolation.c || exit
 gcc *.o -lnetcdf -o wrfpp  || exit
 
 echo --- run wrfpp --------
-./wrfpp
+#./wrfpp test_d01 2013-10-07_12 2013-10-08_04:00:00 2013-10-08_03:00:00
+./wrfpp test_d01 2013-10-07_12 2013-10-08_04:00:00

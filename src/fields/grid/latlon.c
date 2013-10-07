@@ -28,7 +28,7 @@ void write_LATLON () {
   int lat_id;
   int lon_id;
   
-  ncout_init("out/latlon.nc", DIM_X | DIM_Y, &nc_id, dim_ids);
+  ncout_init("grid", "latlon", DIM_X | DIM_Y, &nc_id, dim_ids);
   
   nc_error(nc_def_var (nc_id, "lat", NC_FLOAT, 2, dim_ids, &lat_id));
   nc_error(nc_def_var (nc_id, "lon", NC_FLOAT, 2, dim_ids, &lon_id));

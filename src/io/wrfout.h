@@ -1,6 +1,7 @@
 #include <netcdf.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int wrfout_id;
 
@@ -16,5 +17,11 @@ int wTRUELAT1;
 int wTRUELAT2;
 int wCEN_LON;
 
-void open_wrfout (const char *path);
+char *wDOMAIN;
+char *wRUN;
+char *wRUN_START;
+char *wFRAME;
+char *wFRAME_LAST;
+
+void open_wrfout (int argc, char *argv[]);
 void close_wrfout ();

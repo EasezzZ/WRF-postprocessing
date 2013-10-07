@@ -10,7 +10,7 @@ Why another post-processing utility for WRF ?
 ---------------------------------------------
 Most WRF-related software are complicated and written in FORTRAN.
 
-We want something very simple so everyone can contribute. That why this one is written in C.
+We want something very simple so everyone can contribute. That is why this one is written in C.
 
 
 Documentation

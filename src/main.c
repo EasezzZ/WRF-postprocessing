@@ -5,8 +5,12 @@
 //#include "fields/wind/uv10.h"
 
 int main(int argc, char *argv[]) {
+
+  if (argc != 4 && argc != 5) {
+    fprintf(stderr, "USAGE : ./wrfpp {DOMAIN} {RUN} {FRAME} [{LASTFRAME}]\n");
+  }
   
-  open_wrfout("wrfout-test.nc");
+  open_wrfout(argc, argv);
   
   load_LATLON();
   load_TOPO();
