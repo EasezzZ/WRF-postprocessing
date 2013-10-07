@@ -11,5 +11,6 @@
 void ncout_init (const char* cat, const char* fname, int dims, int *nc_idp, int *dim_idsp);
 
 void ncout_set_global_meta (int nc_id);
+void ncout_set_meta (int nc_id, int var_id, const char *name, const char * text);
 
 void ncout_close (int nc_id);
