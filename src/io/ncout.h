@@ -8,9 +8,16 @@
 #define DIM_Y 2
 #define DIM_Z 4
 
-void ncout_init (const char* cat, const char* fname, int dims, int *nc_idp, int *dim_idsp);
+int ncout_ID;
+int ncout_DIM_X;
+int ncout_DIM_Y;
+int ncout_DIM_Z;
 
-void ncout_set_global_meta (int nc_id);
-void ncout_set_meta (int nc_id, int var_id, const char *name, const char * text);
+void ncout_open ();
 
-void ncout_close (int nc_id);
+void ncout_set_meta (int var_id, const char *name, const char * text);
+
+void ncout_def_var_float (char * name, int ndims, int *dim_ids, int *var_id);
+
+void ncout_close ();
+void ncout_enddef();

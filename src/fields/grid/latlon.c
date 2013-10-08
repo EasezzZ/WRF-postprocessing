@@ -20,49 +20,31 @@ void load_LATLON () {
 
 
 void write_LATLON () {
-  
-  int nc_id;
-  
-  int dim_ids[2];  
-  
-  int lat_id;
-  int lon_id;
-  
-  ncout_init("grid", "latlon", DIM_X | DIM_Y, &nc_id, dim_ids);
-  
-  set_LATLON_meta(nc_id, dim_ids, &lat_id, &lon_id);
-  
-  ncout_set_global_meta (nc_id);
-  
-  nc_error(nc_enddef(nc_id));
-
-  set_LATLON_data(nc_id, lat_id, lon_id);
-  
-  ncout_close(nc_id);
-
+  nc_error(nc_put_var_float(ncout_ID, idLAT, wLAT));
+  nc_error(nc_put_var_float(ncout_ID, idLON, wLON)); 
 }
 
-void set_LATLON_data (int nc_id, int lat_id, int lon_id) {
-  nc_error(nc_put_var_float(nc_id, lat_id, wLAT));
-  nc_error(nc_put_var_float(nc_id, lon_id, wLON)); 
-}
-
-void set_LATLON_meta (int nc_id, int *dim_ids, int *lat_idp, int *lon_idp) {
+void set_meta_LATLON () {
   
-  nc_error(nc_def_var (nc_id, "lat", NC_FLOAT, 2, dim_ids, lat_idp));
-  nc_error(nc_def_var (nc_id, "lon", NC_FLOAT, 2, dim_ids, lon_idp));
-
-  ncout_set_meta (nc_id, *lat_idp, "long_name", "latitude");
-  ncout_set_meta (nc_id, *lat_idp, "standard_name", "latitude");
-  ncout_set_meta (nc_id, *lat_idp, "units", "degrees_north");
-  ncout_set_meta (nc_id, *lat_idp, "_CoordinateAxisType", "Lat");
-  ncout_set_meta (nc_id, *lat_idp, "coordinates", "lon lat");
+  int dim_ids[2];
   
-  ncout_set_meta (nc_id, *lon_idp, "long_name", "longitude");
-  ncout_set_meta (nc_id, *lon_idp, "standard_name", "longitude");
-  ncout_set_meta (nc_id, *lon_idp, "units", "degrees_east");
-  ncout_set_meta (nc_id, *lon_idp, "_CoordinateAxisType", "Lon");
-  ncout_set_meta (nc_id, *lon_idp, "coordinates", "lon lat");
+  dim_ids[0] = ncout_DIM_Y;
+  dim_ids[1] = ncout_DIM_X;
+  
+  ncout_def_var_float("lat", 2, dim_ids, &idLAT);
+  ncout_def_var_float("lon", 2, dim_ids, &idLON);
+
+  ncout_set_meta (idLAT, "long_name", "latitude");
+  ncout_set_meta (idLAT, "standard_name", "latitude");
+  ncout_set_meta (idLAT, "units", "degrees_north");
+  ncout_set_meta (idLAT, "_CoordinateAxisType", "Lat");
+  ncout_set_meta (idLAT, "coordinates", "lon lat");
+  
+  ncout_set_meta (idLON, "long_name", "longitude");
+  ncout_set_meta (idLON, "standard_name", "longitude");
+  ncout_set_meta (idLON, "units", "degrees_east");
+  ncout_set_meta (idLON, "_CoordinateAxisType", "Lon");
+  ncout_set_meta (idLON, "coordinates", "lon lat");
   
 }
 

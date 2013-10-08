@@ -23,5 +23,5 @@ char *wRUN_START;
 char *wFRAME;
 char *wFRAME_LAST;
 
-void open_wrfout (int argc, char *argv[]);
-void close_wrfout ();
+void wrfout_open (int argc, char *argv[]);
+void wrfout_close ();

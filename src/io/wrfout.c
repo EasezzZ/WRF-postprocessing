@@ -1,6 +1,6 @@
 #include "wrfout.h"
 
-void open_wrfout (int argc, char *argv[]) {
+void wrfout_open (int argc, char *argv[]) {
   // ./wrfpp domain 2013-10-07_12 2013-10-08_04:00:00 2013-10-08_03:00:00
 
   
@@ -65,7 +65,7 @@ void open_wrfout (int argc, char *argv[]) {
 
 
 
-void close_wrfout () {
+void wrfout_close () {
    nc_error(nc_close(wrfout_id));
    free(wRUN_START);
 }

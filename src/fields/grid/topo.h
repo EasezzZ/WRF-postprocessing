@@ -8,6 +8,9 @@
 
 float *wTOPO;
 
+int idTOPO;
+
 void load_TOPO ();
 void free_TOPO ();
 void write_TOPO ();
+void set_meta_TOPO ();

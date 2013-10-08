@@ -15,33 +15,24 @@ void load_TOPO () {
 
 
 void write_TOPO () {
-  
-  int nc_id;
-  int dim_ids[2];  
-  int topo_id, lat_id, lon_id;
-  
-  ncout_init("grid", "topo", DIM_X | DIM_Y, &nc_id, dim_ids);
-  
-  nc_error(nc_def_var (nc_id, "topo", NC_FLOAT, 2, dim_ids, &topo_id));
-  
-  set_LATLON_meta(nc_id, dim_ids, &lat_id, &lon_id);
+  nc_error(nc_put_var_float(ncout_ID, idTOPO, wTOPO));
+}
 
-  ncout_set_global_meta (nc_id);
+void set_meta_TOPO () {
+  
+  int dim_ids[2];
+  
+  dim_ids[0] = ncout_DIM_Y;
+  dim_ids[1] = ncout_DIM_X;
+  
+  ncout_def_var_float("topo", 2, dim_ids, &idTOPO);
 
-  ncout_set_meta (nc_id, topo_id, "long_name", "model_terrain_elevation");
-  ncout_set_meta (nc_id, topo_id, "standard_name", "");
-  ncout_set_meta (nc_id, topo_id, "description", "Terrain elevation above mean sea level, as seen by the numerical model. Terrain is smoothed to the model's grid resolution.");
-  ncout_set_meta (nc_id, topo_id, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/grid/topo.c");
-  ncout_set_meta (nc_id, topo_id, "units", "m");
-  ncout_set_meta (nc_id, topo_id, "coordinates", "lon lat");
-  
-  nc_error(nc_enddef(nc_id));
-  
-  nc_error(nc_put_var_float(nc_id, topo_id, wTOPO));
-  
-  set_LATLON_data(nc_id, lat_id, lon_id);
-  
-  ncout_close(nc_id);
+  ncout_set_meta (idTOPO, "long_name", "model_terrain_elevation");
+  ncout_set_meta (idTOPO, "standard_name", "");
+  ncout_set_meta (idTOPO, "description", "Terrain elevation above mean sea level, as seen by the numerical model. Terrain is smoothed to the model's grid resolution.");
+  ncout_set_meta (idTOPO, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/grid/topo.c");
+  ncout_set_meta (idTOPO, "units", "m");
+  ncout_set_meta (idTOPO, "coordinates", "lon lat");
   
 }
 

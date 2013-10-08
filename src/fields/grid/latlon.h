@@ -9,8 +9,10 @@
 float *wLAT;
 float *wLON;
 
+int idLAT;
+int idLON;
+
 void load_LATLON ();
 void free_LATLON ();
 void write_LATLON ();
-void set_LATLON_meta (int nc_id, int *dim_ids, int *lat_idp, int *lon_idp);
-void set_LATLON_data (int nc_id, int lat_id, int lon_id);
+void set_meta_LATLON ();
