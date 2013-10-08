@@ -8,6 +8,9 @@ int wrfout_id;
 size_t wNX; // west_east
 size_t wNY; // south_north
 size_t wNZ; // bottom_top
+size_t wNXS; // west_east staggered
+size_t wNYS; // south_north staggered
+size_t wNZS; // bottom_top staggered
 
 size_t wN2D;
 size_t wN3D;

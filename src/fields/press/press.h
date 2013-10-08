@@ -6,9 +6,12 @@
 #include "../../io/ncout.h"
 
 
-float *wTC2;
-int idTC2;
+float *wPP;
+float *wPB;
+float *wPRESS;
 
-void load_TC2 ();
-void free_TC2 ();
-void write_TC2 ();
+int idPRESS;
+
+void load_PRESS ();
+void free_PRESS ();
+void write_PRESS ();

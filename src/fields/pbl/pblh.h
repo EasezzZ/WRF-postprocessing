@@ -8,6 +8,8 @@
 
 float *wPBLH;
 
+int idPBLH;
+
 void load_PBLH ();
 void free_PBLH ();
 void write_PBLH ();

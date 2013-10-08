@@ -20,33 +20,24 @@ void load_TC2 () {
 
 
 void write_TC2 () {
-  
-  int nc_id;
-  int dim_ids[2];  
-  int tc2_id, lat_id, lon_id;
-  
-  ncout_init("temp", "tc2", DIM_X | DIM_Y, &nc_id, dim_ids);
-  
-  nc_error(nc_def_var (nc_id, "tc2", NC_FLOAT, 2, dim_ids, &tc2_id));
-  
-  set_LATLON_meta(nc_id, dim_ids, &lat_id, &lon_id);
+  nc_error(nc_put_var_float(ncout_ID, idTC2, wTC2));
+}
 
-  ncout_set_global_meta (nc_id);
+void set_meta_TC2 () {
+  
+  int dim_ids[2];
+  
+  dim_ids[0] = ncout_DIM_Y;
+  dim_ids[1] = ncout_DIM_X;
+  
+  ncout_def_var_float("tc2", 2, dim_ids, &idTC2);
 
-  ncout_set_meta (nc_id, tc2_id, "long_name", "air_temperature_2m_above_surface");
-  ncout_set_meta (nc_id, tc2_id, "standard_name", "air_temperature_2m_above_surface");
-  ncout_set_meta (nc_id, tc2_id, "description", "2m Air temperature is the bulk temperature of the air, 2 meters above surface. ");
-  ncout_set_meta (nc_id, tc2_id, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/temp/tc2.c");
-  ncout_set_meta (nc_id, tc2_id, "units", "degree_Celsius");
-  ncout_set_meta (nc_id, tc2_id, "coordinates", "lon lat");
-  
-  nc_error(nc_enddef(nc_id));
-  
-  nc_error(nc_put_var_float(nc_id, tc2_id, wTC2));
-  
-  set_LATLON_data(nc_id, lat_id, lon_id);
-  
-  ncout_close(nc_id);
+  ncout_set_meta (idTC2, "long_name", "air_temperature_2m_above_surface");
+  ncout_set_meta (idTC2, "standard_name", "air_temperature_2m_above_surface");
+  ncout_set_meta (idTC2, "description", "2m Air temperature is the bulk temperature of the air, 2 meters above surface. ");
+  ncout_set_meta (idTC2, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/temp/tc2.c");
+  ncout_set_meta (idTC2, "units", "degree_Celsius");
+  ncout_set_meta (idTC2, "coordinates", "lon lat");
   
 }
 

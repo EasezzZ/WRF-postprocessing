@@ -15,33 +15,24 @@ void load_PBLH () {
 
 
 void write_PBLH () {
-  
-  int nc_id;
-  int dim_ids[2];  
-  int pblh_id, lat_id, lon_id;
-  
-  ncout_init("pbl", "pblh", DIM_X | DIM_Y, &nc_id, dim_ids);
-  
-  nc_error(nc_def_var (nc_id, "pblh", NC_FLOAT, 2, dim_ids, &pblh_id));
-  
-  set_LATLON_meta(nc_id, dim_ids, &lat_id, &lon_id);
+  nc_error(nc_put_var_float(ncout_ID, idPBLH, wPBLH));
+}
 
-  ncout_set_global_meta (nc_id);
+void set_meta_PBLH () {
 
-  ncout_set_meta (nc_id, pblh_id, "long_name", "atmosphere_boundary_layer_thickness");
-  ncout_set_meta (nc_id, pblh_id, "standard_name", "atmosphere_boundary_layer_thickness");
-  ncout_set_meta (nc_id, pblh_id, "description", "The atmosphere boundary layer thickness is the \"depth\" or \"height\" of the (atmosphere) planetary boundary layer.");
-  ncout_set_meta (nc_id, pblh_id, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/pbl/pblh.c");
-  ncout_set_meta (nc_id, pblh_id, "units", "m");
-  ncout_set_meta (nc_id, pblh_id, "coordinates", "lon lat");
+  int dim_ids[2];
   
-  nc_error(nc_enddef(nc_id));
+  dim_ids[0] = ncout_DIM_Y;
+  dim_ids[1] = ncout_DIM_X;
   
-  nc_error(nc_put_var_float(nc_id, pblh_id, wPBLH));
-  
-  set_LATLON_data(nc_id, lat_id, lon_id);
-  
-  ncout_close(nc_id);
+  ncout_def_var_float("pblh", 2, dim_ids, &idPBLH);
+
+  ncout_set_meta (idPBLH, "long_name", "atmosphere_boundary_layer_thickness");
+  ncout_set_meta (idPBLH, "standard_name", "atmosphere_boundary_layer_thickness");
+  ncout_set_meta (idPBLH, "description", "The atmosphere boundary layer thickness is the \"depth\" or \"height\" of the (atmosphere) planetary boundary layer.");
+  ncout_set_meta (idPBLH, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/pbl/pblh.c");
+  ncout_set_meta (idPBLH, "units", "m");
+  ncout_set_meta (idPBLH, "coordinates", "lon lat");
   
 }
 

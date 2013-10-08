@@ -27,12 +27,18 @@ void wrfout_open (int argc, char *argv[]) {
   int X_id; // west_east
   int Y_id; // south_north
   int Z_id; // bottom_top
+  int XS_id; // west_east staggered
+  int YS_id; // south_north staggered
+  int ZS_id; // bottom_top staggered
   int time_id; // bottom_top
 
   
   nc_error(nc_inq_dimid(wrfout_id, "west_east", &X_id));
   nc_error(nc_inq_dimid(wrfout_id, "south_north", &Y_id));
   nc_error(nc_inq_dimid(wrfout_id, "bottom_top", &Z_id));
+  nc_error(nc_inq_dimid(wrfout_id, "west_east_stag", &XS_id));
+  nc_error(nc_inq_dimid(wrfout_id, "south_north_stag", &YS_id));
+  nc_error(nc_inq_dimid(wrfout_id, "bottom_top_stag", &ZS_id));
   nc_error(nc_inq_dimid(wrfout_id, "Time", &time_id));
   
   int ntime;
@@ -46,6 +52,9 @@ void wrfout_open (int argc, char *argv[]) {
   nc_error(nc_inq_dimlen(wrfout_id, X_id, &wNX));
   nc_error(nc_inq_dimlen(wrfout_id, Y_id, &wNY));
   nc_error(nc_inq_dimlen(wrfout_id, Z_id, &wNZ));
+  nc_error(nc_inq_dimlen(wrfout_id, XS_id, &wNXS));
+  nc_error(nc_inq_dimlen(wrfout_id, YS_id, &wNYS));
+  nc_error(nc_inq_dimlen(wrfout_id, ZS_id, &wNZS));
   
   wN2D = wNX*wNY;
   wN3D = wN2D*wNZ;
