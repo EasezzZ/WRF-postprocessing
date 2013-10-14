@@ -4,9 +4,10 @@
 
 #include "../../io/wrfout.h"
 #include "../../io/ncout.h"
-
+#include "../grid/topo.h"
 
 float *wPBLH;
+float *wPBLTOP;
 
 int idPBLH;
 

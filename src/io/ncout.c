@@ -24,10 +24,29 @@ void ncout_open () {
   free (cmd);
   free (filename);
 
-  nc_error(nc_def_dim(ncout_ID, "z", wNZ, &ncout_DIM_Z));
+  nc_error(nc_def_dim(ncout_ID, "model_level", wNZ, &ncout_DIM_Z));
   nc_error(nc_def_dim(ncout_ID, "y", wNY, &ncout_DIM_Y));
   nc_error(nc_def_dim(ncout_ID, "x", wNX, &ncout_DIM_X));
+  nc_error(nc_def_dim(ncout_ID, "press_level", ip_nPLEVELS, &ncout_DIM_PLEVEL));
+  nc_error(nc_def_dim(ncout_ID, "meters_level", ip_nMLEVELS, &ncout_DIM_MLEVEL));
 
+  
+  ncout_2D_DIMS[0] = ncout_DIM_Y;
+  ncout_2D_DIMS[1] = ncout_DIM_X;
+  
+  
+  ncout_3D_DIMS[0] = ncout_DIM_Z;
+  ncout_3D_DIMS[1] = ncout_DIM_Y;
+  ncout_3D_DIMS[2] = ncout_DIM_X;
+  
+  ncout_3DP_DIMS[0] = ncout_DIM_PLEVEL;
+  ncout_3DP_DIMS[1] = ncout_DIM_Y;
+  ncout_3DP_DIMS[2] = ncout_DIM_X;
+  
+  ncout_3DM_DIMS[0] = ncout_DIM_MLEVEL;
+  ncout_3DM_DIMS[1] = ncout_DIM_Y;
+  ncout_3DM_DIMS[2] = ncout_DIM_X;
+  
 
   ncout_set_meta (NC_GLOBAL, "title", "OpenMeteoData WRF-Europe model");
   ncout_set_meta (NC_GLOBAL, "institution", "OpenMeteoData http://openmeteodata.org");

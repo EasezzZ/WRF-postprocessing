@@ -14,6 +14,10 @@ int main(int argc, char *argv[]) {
   load_TC2();
   load_PRESS();
   load_GEOPOTENTIAL();
+  load_TEMP();
+  load_RAIN();
+  load_RH();
+  
 //  load_UV10();
   
   
@@ -26,6 +30,9 @@ int main(int argc, char *argv[]) {
   set_meta_TC2 ();
   set_meta_PRESS ();
   set_meta_GEOPOTENTIAL ();
+  set_meta_TEMP ();
+  set_meta_RAIN ();
+  set_meta_RH ();
   
   
   ncout_enddef();
@@ -36,6 +43,10 @@ int main(int argc, char *argv[]) {
   write_TC2();
   write_PRESS();
   write_GEOPOTENTIAL();
+  write_TEMP();
+  write_RAIN();
+  write_RH();
+  
 //  write_UV10();
 //  write_UV10_pol();
   
@@ -46,6 +57,9 @@ int main(int argc, char *argv[]) {
   free_TC2();
   free_PRESS();
   free_GEOPOTENTIAL();
+  free_TEMP();
+  free_RAIN();
+  free_RH();
 //  free_UV10();
   
   ncout_close();

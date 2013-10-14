@@ -25,12 +25,7 @@ void write_TC2 () {
 
 void set_meta_TC2 () {
   
-  int dim_ids[2];
-  
-  dim_ids[0] = ncout_DIM_Y;
-  dim_ids[1] = ncout_DIM_X;
-  
-  ncout_def_var_float("tc2", 2, dim_ids, &idTC2);
+  ncout_def_var_float("tc2", 2, ncout_2D_DIMS, &idTC2);
 
   ncout_set_meta (idTC2, "long_name", "air_temperature_2m_above_surface");
   ncout_set_meta (idTC2, "standard_name", "air_temperature_2m_above_surface");

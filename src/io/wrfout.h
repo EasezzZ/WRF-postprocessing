@@ -1,9 +1,15 @@
+#ifndef	_WRFOUT_H
+#define	_WRFOUT_H
+
 #include <netcdf.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
 
 int wrfout_id;
+int wrfout_last_id;
 
 size_t wNX; // west_east
 size_t wNY; // south_north
@@ -28,3 +34,5 @@ char *wFRAME_LAST;
 
 void wrfout_open (int argc, char *argv[]);
 void wrfout_close ();
+
+#endif

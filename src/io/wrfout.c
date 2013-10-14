@@ -15,14 +15,26 @@ void wrfout_open (int argc, char *argv[]) {
   
   int len = (strlen(wDOMAIN)*2+strlen(wRUN)+strlen(wFRAME)+10)* sizeof(char);
   char *path = malloc(len);
-
+  
   snprintf(path, len, "in/%s/%s/%s_%s.nc", wDOMAIN, wRUN, wDOMAIN, wFRAME);
-  
   fprintf(stdout, "Input file : %s\n", path);
-  
   nc_error(nc_open(path, NC_NOWRITE, &wrfout_id));
-  
   free (path);
+  
+  if (wFRAME_LAST != NULL ) {
+    char *last_path = malloc(len);
+    snprintf(last_path, len, "in/%s/%s/%s_%s.nc", wDOMAIN, wRUN, wDOMAIN, wFRAME_LAST);
+    if( access( last_path, F_OK ) != -1 ) {
+      fprintf(stdout, "Last file : %s\n", last_path);
+      nc_error(nc_open(last_path, NC_NOWRITE, &wrfout_last_id));
+    } else {
+      fprintf(stdout, "WARNING ! Cannot open last file :\n%s\n", last_path);
+      wFRAME_LAST = NULL;
+    }    
+    // TODO: check current and last files dimensions are the same
+    free (last_path);
+  }
+  
   
   int X_id; // west_east
   int Y_id; // south_north
@@ -77,4 +89,7 @@ void wrfout_open (int argc, char *argv[]) {
 void wrfout_close () {
    nc_error(nc_close(wrfout_id));
    free(wRUN_START);
+   if (wFRAME_LAST != NULL) { // TODO: check if the file is really open
+     nc_error(nc_close(wrfout_last_id));
+   }
 }

@@ -8,9 +8,17 @@ void load_PBLH () {
   
   wPBLH = malloc (wN2D * sizeof(float));
   if (wPBLH==NULL) {fprintf(stderr, "pblh.c : Cannot allocate wPBLH\n"); exit(-1);}
+  
+  wPBLTOP = malloc (wN2D * sizeof(float));
+  if (wPBLTOP==NULL) {fprintf(stderr, "pblh.c : Cannot allocate wPBLTOP\n"); exit(-1);}
 
   nc_error(nc_get_var_float(wrfout_id, pblh_id, wPBLH));
 
+  int i;
+  for (i=0; i<wN2D; i++) {
+    wPBLTOP[i] = wTOPO[i] + wPBLH[i];
+  }
+  
 }
 
 
@@ -20,12 +28,7 @@ void write_PBLH () {
 
 void set_meta_PBLH () {
 
-  int dim_ids[2];
-  
-  dim_ids[0] = ncout_DIM_Y;
-  dim_ids[1] = ncout_DIM_X;
-  
-  ncout_def_var_float("pblh", 2, dim_ids, &idPBLH);
+  ncout_def_var_float("pblh", 2, ncout_2D_DIMS, &idPBLH);
 
   ncout_set_meta (idPBLH, "long_name", "atmosphere_boundary_layer_thickness");
   ncout_set_meta (idPBLH, "standard_name", "atmosphere_boundary_layer_thickness");
@@ -40,5 +43,6 @@ void set_meta_PBLH () {
 void free_PBLH () {
  
   free (wPBLH);
+  free (wPBLTOP);
   
 }

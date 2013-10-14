@@ -19,13 +19,8 @@ void write_TOPO () {
 }
 
 void set_meta_TOPO () {
-
-  int dim_ids[2];
   
-  dim_ids[0] = ncout_DIM_Y;
-  dim_ids[1] = ncout_DIM_X;
-  
-  ncout_def_var_float("topo", 2, dim_ids, &idTOPO);
+  ncout_def_var_float("topo", 2, ncout_2D_DIMS, &idTOPO);
 
   ncout_set_meta (idTOPO, "long_name", "model_terrain_elevation");
   ncout_set_meta (idTOPO, "standard_name", "");

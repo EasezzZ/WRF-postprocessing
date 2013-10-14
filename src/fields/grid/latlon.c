@@ -25,14 +25,9 @@ void write_LATLON () {
 }
 
 void set_meta_LATLON () {
-  
-  int dim_ids[2];
-  
-  dim_ids[0] = ncout_DIM_Y;
-  dim_ids[1] = ncout_DIM_X;
-  
-  ncout_def_var_float("lat", 2, dim_ids, &idLAT);
-  ncout_def_var_float("lon", 2, dim_ids, &idLON);
+ 
+  ncout_def_var_float("lat", 2, ncout_2D_DIMS, &idLAT);
+  ncout_def_var_float("lon", 2, ncout_2D_DIMS, &idLON);
 
   ncout_set_meta (idLAT, "long_name", "latitude");
   ncout_set_meta (idLAT, "standard_name", "latitude");

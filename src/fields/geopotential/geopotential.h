@@ -5,12 +5,17 @@
 #include "../../io/wrfout.h"
 #include "../../io/ncout.h"
 
+#include "../press/press.h"
 
 float *wsPH;
 float *wsPHB;
 float *wGEOPOTENTIAL;
+float *wGEOPOTENTIAL_P;
+float *wHEIGHT;
 
 int idGEOPOTENTIAL;
+int idGEOPOTENTIAL_P;
+int idHEIGHT;
 
 void load_GEOPOTENTIAL ();
 void free_GEOPOTENTIAL ();
