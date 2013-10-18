@@ -1,7 +1,7 @@
 #include "rh.h"
 
 void load_RH () {
-  
+  fprintf(stdout, "Loading RH\n");
   int qvapor_id;
 
   nc_error(nc_inq_varid (wrfout_id, "QVAPOR", &qvapor_id));
@@ -33,6 +33,7 @@ void load_RH () {
 
 
 void write_RH () {
+  fprintf(stdout, "Writing RH\n");
   nc_error(nc_put_var_float(ncout_ID, idRH, wRH));
 }
 
@@ -46,7 +47,7 @@ void set_meta_RH () {
   ncout_set_meta (idRH, "description", "");
   ncout_set_meta (idRH, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/humidity/rh.c");
   ncout_set_meta (idRH, "units", "percent");
-  ncout_set_meta (idRH, "coordinates", "lon lat");
+  ncout_set_meta (idRH, "coordinates", "model_level lon lat");
   
   
 }

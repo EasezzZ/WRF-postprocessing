@@ -1,5 +1,23 @@
 #include "interpolation.h"
 
+void write_ip_levels () {
+  nc_error(nc_put_var_float(ncout_ID, idMLEVELS, ip_MLEVELS));
+  nc_error(nc_put_var_float(ncout_ID, idPLEVELS, ip_PLEVELS));
+}
+
+void set_meta_ip_levels () {
+ 
+  ncout_def_var_float("meters_level", 1, ncout_1DM_DIM, &idMLEVELS);
+  ncout_def_var_float("press_level", 1, ncout_1DP_DIM, &idPLEVELS);
+
+  ncout_set_meta (idPLEVELS, "long_name", "pressure_levels");
+  ncout_set_meta (idPLEVELS, "standard_name", "");
+  ncout_set_meta (idPLEVELS, "units", "hPa");
+  ncout_set_meta (idPLEVELS, "_CoordinateAxisType", "Pressure");
+  ncout_set_meta (idPLEVELS, "coordinates", "press_level");
+}
+
+
 void interpolate_3d_z (float *data3d, float ip_level, float *levels, float *data2d) {
   
   int interp;

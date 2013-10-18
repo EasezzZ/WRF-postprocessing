@@ -2,6 +2,8 @@
 
 void load_PRESS () {
 
+  fprintf(stdout, "Loading PRESS\n");
+  
   // base state pressure
   int b_press_id;
   nc_error(nc_inq_varid (wrfout_id, "PB", &b_press_id));
@@ -39,6 +41,8 @@ void load_PRESS () {
 
 
 void write_PRESS () {
+  fprintf(stdout, "Writing PRESS\n");
+
   nc_error(nc_put_var_float(ncout_ID, idPRESS, wPRESS));
   //nc_error(nc_put_var_float(ncout_ID, idPRESS_M, wPRESS_M));
 }
@@ -53,7 +57,7 @@ void set_meta_PRESS () {
   ncout_set_meta (idPRESS, "description", "");
   ncout_set_meta (idPRESS, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/press/press.c");
   ncout_set_meta (idPRESS, "units", "hPa");
-  ncout_set_meta (idPRESS, "coordinates", "level lon lat");
+  ncout_set_meta (idPRESS, "coordinates", "model_level lon lat");
   
 }
 

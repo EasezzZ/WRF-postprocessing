@@ -1,7 +1,7 @@
 #include "topo.h"
 
 void load_TOPO () {
-  
+  fprintf(stdout, "Loading TOPO\n");
   int topo_id;
 
   nc_error(nc_inq_varid (wrfout_id, "HGT", &topo_id));
@@ -15,6 +15,7 @@ void load_TOPO () {
 
 
 void write_TOPO () {
+  fprintf(stdout, "Writing TOPO\n");
   nc_error(nc_put_var_float(ncout_ID, idTOPO, wTOPO));
 }
 

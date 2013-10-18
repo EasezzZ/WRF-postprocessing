@@ -1,6 +1,16 @@
 #include "calc_uvmet.h"
 
-void calc_uvmet (float *u, float *v, float *umet, float *vmet, double cone, int is_stag, int is_missing_val) {
+int uvmet_need_rotate () {
+  if (wMAP_PROJ == 1 || wMAP_PROJ == 2) {
+    fprintf(stdout, "Wind needs to be rotated\n");
+    return 1;
+  } else {
+    fprintf(stdout, "Wind do not need to be rotated\n");
+    return 0;
+  }
+}
+
+void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
 
   // global wNY
   // global wNX
@@ -9,20 +19,37 @@ void calc_uvmet (float *u, float *v, float *umet, float *vmet, double cone, int 
   // global wLAT
   // global wLON
   // global NC_FILL_FLOAT
+  // global wMAP_PROJ
+  // global wTRUELAT1
+  // global wTRUELAT2
   
   
-  //TODO: vérifier qu'on utilise bien wLAT et wLON pour du staggered
-  // sinon, c'est wLAT_U et wLAT_V ? voir dans wrfW.c / wrf_user.f
-  
-  //ISTAG should be 0 if the U,V grids are not staggered.
-  //That is, NY = NYP1 and NX = NXP1.
-  
+
   
   double * longca;
   double * longcb;
 
   double deg2rad = M_PI/180;
-
+  double cone;
+  
+  if (wMAP_PROJ == 1 || wMAP_PROJ == 2) {
+    if (wMAP_PROJ == 1) { // lambert conformal	
+	if ( (fabs(wTRUELAT1 - wTRUELAT2) > 0.1)  && (fabs(wTRUELAT2 - 90.) > 0.1)) {
+	  cone = ( pow(10, cos(wTRUELAT1*deg2rad)) - pow(10, cos(wTRUELAT2*deg2rad)) )
+		/ ( pow(10, tan(45. -fabs(wTRUELAT1/2.)*deg2rad))
+		    - pow(10, tan(45. -fabs(wTRUELAT2/2.)*deg2rad)) );
+	} else {
+	  cone = sin(fabs(wTRUELAT1)*deg2rad);
+	}	
+    } else if (wMAP_PROJ == 2) { // polar stereographic
+      cone = 1.;
+    }
+  } else {
+    fprintf(stderr, "calc_uvmet: ERROR : this projection do not need wind rotation\n");
+    exit(-1);
+  }
+  
+  
   longca = malloc(wN2D * sizeof(double));
   if (longca==NULL) {fprintf(stderr, "calc_uvmet.c : Cannot allocate LONGCA\n"); exit(-1);}
   longcb = malloc(wN2D * sizeof(double));
@@ -53,36 +80,49 @@ void calc_uvmet (float *u, float *v, float *umet, float *vmet, double cone, int 
 
   // computing velocities
 
-  int x,y;
-  for (y=0; y<wNY; y++) {
-    for (x=0; x<wNX; x++) {
-      size_t i = x+y*wNX;
-      size_t next_x = x+1+y*wNX;
-      size_t next_y = x+(y+1)*wNX;
-      if (is_stag==1) {
-	if (is_missing_val && (u[i]==NC_FILL_FLOAT || v[i]==NC_FILL_FLOAT ||
-			      u[next_x]==NC_FILL_FLOAT || v[next_y]==NC_FILL_FLOAT))
-	  {
+  int x,y,z;
+  
+  if (ndims == 2) {
+    
+    for (y=0; y<wNY; y++) {
+      for (x=0; x<wNX; x++) {
+	size_t i = x+y*wNX;
+
+	  if (u[i]==NC_FILL_FLOAT || v[i]==NC_FILL_FLOAT) {
 	    umet[i] = NC_FILL_FLOAT;
 	    vmet[i] = NC_FILL_FLOAT;
 	  } else {
-	    double uk = 0.5 * (u[i]+u[next_x]);
-	    double vk = 0.5 * (v[i]+v[next_y]);
+	    double uk = u[i];
+	    double vk = u[i];
 	    umet[i] = vk*longcb[i] + uk*longca[i];
 	    vmet[i] = vk*longca[i] - uk*longcb[i];
 	  }
-      } else {
-	if (is_missing_val && (u[i]==NC_FILL_FLOAT || v[i]==NC_FILL_FLOAT)) {
-	  umet[i] = NC_FILL_FLOAT;
-	  vmet[i] = NC_FILL_FLOAT;
-	} else {
-	  double uk = u[i];
-	  double vk = u[i];
-	  umet[i] = vk*longcb[i] + uk*longca[i];
-	  vmet[i] = vk*longca[i] - uk*longcb[i];
+	
+      }
+    }
+    
+  } else {
+    
+    for (z=0; z<wNZ; z++) {
+      for (y=0; y<wNY; y++) {
+	for (x=0; x<wNX; x++) {
+	  size_t i = x+y*wNX+z*wN2D;
+	  size_t i2d = x+y*wNX;
+
+	    if (u[i]==NC_FILL_FLOAT || v[i]==NC_FILL_FLOAT) {
+	      umet[i] = NC_FILL_FLOAT;
+	      vmet[i] = NC_FILL_FLOAT;
+	    } else {
+	      double uk = u[i];
+	      double vk = u[i];
+	      umet[i] = vk*longcb[i2d] + uk*longca[i2d];
+	      vmet[i] = vk*longca[i2d] - uk*longcb[i2d];
+	    }
+	  
 	}
       }
     }
+    
   }
 
   free (longca);

@@ -1,7 +1,8 @@
 #include "latlon.h"
 
 void load_LATLON () {
-  
+  fprintf(stdout, "Loading LATLON\n");
+
   int lat_id;
   int lon_id;
 
@@ -20,6 +21,7 @@ void load_LATLON () {
 
 
 void write_LATLON () {
+  fprintf(stdout, "Writing LATLON\n");
   nc_error(nc_put_var_float(ncout_ID, idLAT, wLAT));
   nc_error(nc_put_var_float(ncout_ID, idLON, wLON)); 
 }

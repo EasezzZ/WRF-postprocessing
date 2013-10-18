@@ -1,7 +1,8 @@
 #include "tc2.h"
 
 void load_TC2 () {
-  
+  fprintf(stdout, "Loading TC2\n");
+
   int tc2_id;
 
   nc_error(nc_inq_varid (wrfout_id, "T2", &tc2_id));
@@ -20,6 +21,7 @@ void load_TC2 () {
 
 
 void write_TC2 () {
+  fprintf(stdout, "Writing TC2\n");
   nc_error(nc_put_var_float(ncout_ID, idTC2, wTC2));
 }
 

@@ -2,6 +2,8 @@
 
 void load_GEOPOTENTIAL () {
 
+  fprintf(stdout, "Loading GEOPOTENTIAL\n");
+  
   // base state geopotential
   int b_geopotential_id;
   nc_error(nc_inq_varid (wrfout_id, "PHB", &b_geopotential_id));
@@ -45,6 +47,7 @@ void load_GEOPOTENTIAL () {
 
 
 void write_GEOPOTENTIAL () {
+  fprintf(stdout, "Writing GEOPOTENTIAL\n");
   nc_error(nc_put_var_float(ncout_ID, idGEOPOTENTIAL, wGEOPOTENTIAL));
   nc_error(nc_put_var_float(ncout_ID, idGEOPOTENTIAL_P, wGEOPOTENTIAL_P));
   nc_error(nc_put_var_float(ncout_ID, idHEIGHT, wHEIGHT));
@@ -59,7 +62,7 @@ void set_meta_GEOPOTENTIAL () {
   ncout_set_meta (idGEOPOTENTIAL, "description", "Geopotential is the sum of the specific gravitational potential energy relative to the geoid and the specific centripetal potential energy.");
   ncout_set_meta (idGEOPOTENTIAL, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/geopotential/geopotential.c");
   ncout_set_meta (idGEOPOTENTIAL, "units", "m2 s-2");
-  ncout_set_meta (idGEOPOTENTIAL, "coordinates", "level lon lat");
+  ncout_set_meta (idGEOPOTENTIAL, "coordinates", "model_level lon lat");
   
   
   ncout_def_var_float("height", 3, ncout_3D_DIMS, &idHEIGHT);
@@ -69,7 +72,7 @@ void set_meta_GEOPOTENTIAL () {
   ncout_set_meta (idHEIGHT, "description", "Geopotential is the sum of the specific gravitational potential energy relative to the geoid and the specific centripetal potential energy. Geopotential height is the geopotential divided by the standard acceleration due to gravity. It is numerically similar to the altitude (or geometric height) and not to the quantity with standard name height, which is relative to the surface.");
   ncout_set_meta (idHEIGHT, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/geopotential/geopotential.c");
   ncout_set_meta (idHEIGHT, "units", "m");
-  ncout_set_meta (idHEIGHT, "coordinates", "level lon lat");
+  ncout_set_meta (idHEIGHT, "coordinates", "model_level lon lat");
   
   
   ncout_def_var_float("geopotential_p", 3, ncout_3DP_DIMS, &idGEOPOTENTIAL_P);
@@ -79,7 +82,7 @@ void set_meta_GEOPOTENTIAL () {
   ncout_set_meta (idGEOPOTENTIAL_P, "description", "Geopotential is the sum of the specific gravitational potential energy relative to the geoid and the specific centripetal potential energy.");
   ncout_set_meta (idGEOPOTENTIAL_P, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/geopotential/geopotential.c");
   ncout_set_meta (idGEOPOTENTIAL_P, "units", "m2 s-2");
-  ncout_set_meta (idGEOPOTENTIAL_P, "coordinates", "plevel lon lat");
+  ncout_set_meta (idGEOPOTENTIAL_P, "coordinates", "press_level lon lat");
   
 }
 

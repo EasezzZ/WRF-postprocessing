@@ -6,9 +6,12 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "USAGE : ./wrfpp {DOMAIN} {RUN} {FRAME} [{LASTFRAME}]\n");
   }
   
+  fprintf(stdout, "== Opening input files ==\n");
   wrfout_open(argc, argv);
   
+  fprintf(stdout, "== Loading data ==\n");
   load_LATLON();
+  load_MODEL_LEVEL();
   load_TOPO();
   load_PBLH();
   load_TC2();
@@ -17,14 +20,17 @@ int main(int argc, char *argv[]) {
   load_TEMP();
   load_RAIN();
   load_RH();
+  load_WIND();
   
 //  load_UV10();
   
-  
+  fprintf(stdout, "== Opening output file ==\n");
   ncout_open();
   
-  
+  fprintf(stdout, "== Setting metadata ==\n");
   set_meta_LATLON ();
+  set_meta_MODEL_LEVEL ();
+  set_meta_ip_levels();
   set_meta_TOPO ();
   set_meta_PBLH ();
   set_meta_TC2 ();
@@ -33,11 +39,15 @@ int main(int argc, char *argv[]) {
   set_meta_TEMP ();
   set_meta_RAIN ();
   set_meta_RH ();
+  set_meta_WIND ();
   
   
   ncout_enddef();
   
+  fprintf(stdout, "== Writing data ==\n");
   write_LATLON();
+  write_MODEL_LEVEL();
+  write_ip_levels();
   write_TOPO();
   write_PBLH();
   write_TC2();
@@ -46,12 +56,14 @@ int main(int argc, char *argv[]) {
   write_TEMP();
   write_RAIN();
   write_RH();
+  write_WIND();
   
 //  write_UV10();
 //  write_UV10_pol();
   
-  
+  fprintf(stdout, "== Releasing memory ==\n");
   free_LATLON();
+  free_MODEL_LEVEL();
   free_TOPO();
   free_PBLH();
   free_TC2();
@@ -60,9 +72,13 @@ int main(int argc, char *argv[]) {
   free_TEMP();
   free_RAIN();
   free_RH();
+  free_WIND();
 //  free_UV10();
   
+  fprintf(stdout, "== Closing files ==\n");
   ncout_close();
   wrfout_close();
+
+  fprintf(stdout, "== WRF-PP SUCCESS COMPLETE ==\n");
 
 }

@@ -1,7 +1,7 @@
 #include "pblh.h"
 
 void load_PBLH () {
-  
+  fprintf(stdout, "Loading PBLH\n");
   int pblh_id;
 
   nc_error(nc_inq_varid (wrfout_id, "PBLH", &pblh_id));
@@ -23,6 +23,7 @@ void load_PBLH () {
 
 
 void write_PBLH () {
+  fprintf(stdout, "Writing PBLH\n");
   nc_error(nc_put_var_float(ncout_ID, idPBLH, wPBLH));
 }
 

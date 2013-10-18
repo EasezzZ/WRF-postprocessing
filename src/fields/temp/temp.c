@@ -2,6 +2,9 @@
 
 void load_TEMP () {
   
+ 
+  fprintf(stdout, "Loading TEMP\n");
+  
   int theta_id;
   
   //perturbation potential temperature (theta-t0)
@@ -21,11 +24,12 @@ void load_TEMP () {
   double p1000mb = 100000.;
   double r_d = 287.;
   double cp = 7.*r_d/2.;
+  double pi;
   
   int i;
   for (i=0; i<wN3D; i++) {
     wTHETA[i] += 300;
-    double pi = pow( (wPRESS[i]*100/p1000mb), (r_d/cp) );
+    pi = pow( (wPRESS[i]*100/p1000mb), (r_d/cp) );
     wTK[i] = pi*wTHETA[i];
     wTEMP[i] = wTK[i] - 273.16;
   }
@@ -35,6 +39,8 @@ void load_TEMP () {
 
 
 void write_TEMP () {
+  fprintf(stdout, "Writing TEMP\n");
+
   nc_error(nc_put_var_float(ncout_ID, idTEMP, wTEMP));
 }
 
@@ -47,7 +53,7 @@ void set_meta_TEMP () {
   ncout_set_meta (idTEMP, "description", "");
   ncout_set_meta (idTEMP, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/temp/temp.c");
   ncout_set_meta (idTEMP, "units", "degree_Celsius");
-  ncout_set_meta (idTEMP, "coordinates", "levels lon lat");
+  ncout_set_meta (idTEMP, "coordinates", "model_level lon lat");
   
 }
 

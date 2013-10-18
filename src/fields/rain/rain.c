@@ -1,7 +1,8 @@
 #include "rain.h"
 
 void load_RAIN () {
-  
+  fprintf(stdout, "Loading RAIN\n");
+
   int rain_id;
   int rainc_id;
 
@@ -20,6 +21,7 @@ void load_RAIN () {
   int i;
   
   if (wFRAME_LAST != NULL) {
+    fprintf(stdout, "Getting accumulated rain values from previous file\n");
     
     int rain_last_id;
     int rainc_last_id;
@@ -56,6 +58,7 @@ void load_RAIN () {
 
 
 void write_RAIN () {
+  fprintf(stdout, "Writing RAIN\n");
   nc_error(nc_put_var_float(ncout_ID, idRAIN, wRAIN));
   nc_error(nc_put_var_float(ncout_ID, idRAINC, wRAINC));
 }
