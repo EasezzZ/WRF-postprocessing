@@ -53,7 +53,7 @@ void wrfout_open (int argc, char *argv[]) {
   nc_error(nc_inq_dimid(wrfout_id, "bottom_top_stag", &ZS_id));
   nc_error(nc_inq_dimid(wrfout_id, "Time", &time_id));
   
-  int ntime;
+  size_t ntime;
   nc_error(nc_inq_dimlen(wrfout_id, time_id, &ntime));
   
   if (ntime != 1) {
@@ -76,7 +76,7 @@ void wrfout_open (int argc, char *argv[]) {
   nc_error(nc_get_att_int(wrfout_id, NC_GLOBAL, "TRUELAT2", &wTRUELAT2));
   nc_error(nc_get_att_int(wrfout_id, NC_GLOBAL, "CEN_LON", &wCEN_LON));
   
-  int run_start_len;
+  size_t run_start_len;
   nc_error(nc_inq_attlen (wrfout_id, NC_GLOBAL, "SIMULATION_START_DATE", &run_start_len));
   wRUN_START = malloc((run_start_len+1) * sizeof(char));
   nc_error(nc_get_att_text(wrfout_id, NC_GLOBAL, "SIMULATION_START_DATE", wRUN_START));
