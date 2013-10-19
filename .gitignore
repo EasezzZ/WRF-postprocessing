@@ -23,3 +23,6 @@ wrfpp
 
 #demo files
 *.nc
+
+
+gitversion.h

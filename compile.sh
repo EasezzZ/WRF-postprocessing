@@ -2,6 +2,8 @@
 
 rm *.o
 
+echo "static const char *GITVERSION=\"$(git rev-parse HEAD)\";" > gitversion.h
+
 gcc -c src/main.c || exit
 gcc -c src/io/wrfout.c || exit
 gcc -c src/io/nc_error.c || exit

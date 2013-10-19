@@ -1,12 +1,14 @@
+#ifndef	_NCOUT_H
+#define	_NCOUT_H
+
 #include <netcdf.h>
 #include <string.h>
 #include <sys/stat.h>
 #include "wrfout.h"
 #include "nc_error.h"
 #include "../func/interpolation.h"
+#include "../../gitversion.h"
 
-#ifndef	_NCOUT_H
-#define	_NCOUT_H
 
 #define DIM_X 1
 #define DIM_Y 2
