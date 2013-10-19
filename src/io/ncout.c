@@ -55,7 +55,8 @@ void ncout_open () {
   ncout_set_meta (NC_GLOBAL, "run_start", wRUN_START);
   ncout_set_meta (NC_GLOBAL, "frame", wFRAME);
   ncout_set_meta (NC_GLOBAL, "domain", wDOMAIN);
-  ncout_set_meta (NC_GLOBAL, "wrfpp-version", GITVERSION);
+  ncout_set_meta (NC_GLOBAL, "_wrfpp-git-commit", git_commit);
+  ncout_set_meta (NC_GLOBAL, "_wrfpp-git-status", git_status);
 
 }
 

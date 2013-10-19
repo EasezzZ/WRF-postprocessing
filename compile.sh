@@ -2,7 +2,9 @@
 
 rm *.o
 
-echo "static const char *GITVERSION=\"$(git rev-parse HEAD)\";" > gitversion.h
+
+echo "static const char *git_commit=\"$(git rev-parse HEAD)\";" > gitversion.h
+echo "static const char *git_status=\"$(echo $(git status -s))\";" >> gitversion.h
 
 gcc -c src/main.c || exit
 gcc -c src/io/wrfout.c || exit
