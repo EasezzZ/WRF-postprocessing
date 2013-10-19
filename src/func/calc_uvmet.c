@@ -62,16 +62,19 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
   for (i=0; i<wN2D; i++) {
 
       longca[i] = wLON[i] - wCEN_LON;
+      
       if (longca[i] > 180.) {
-	longca[i] = longca[i] - 360.;
-      } else if (longca[i] < 180.) {
+	longca[i] -= 360.;
+      }
+      
+      if (longca[i] < -180.) {
 	longca[i] = longca[i] + 360.;
       }
 
       if (wLAT[i] < 0.) {
 	longcb[i] = -longca[i]*cone*deg2rad;
       } else {
-	longcb[i] = -longca[i]*cone*deg2rad;
+	longcb[i] = longca[i]*cone*deg2rad;
       }
 
       longca[i] = cos(longcb[i]);
@@ -92,10 +95,8 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
 	    umet[i] = NC_FILL_FLOAT;
 	    vmet[i] = NC_FILL_FLOAT;
 	  } else {
-	    double uk = u[i];
-	    double vk = u[i];
-	    umet[i] = vk*longcb[i] + uk*longca[i];
-	    vmet[i] = vk*longca[i] - uk*longcb[i];
+	    umet[i] = v[i]*longcb[i] + u[i]*longca[i];
+	    vmet[i] = v[i]*longca[i] - u[i]*longcb[i];
 	  }
 	
       }
@@ -113,10 +114,8 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
 	      umet[i] = NC_FILL_FLOAT;
 	      vmet[i] = NC_FILL_FLOAT;
 	    } else {
-	      double uk = u[i];
-	      double vk = u[i];
-	      umet[i] = vk*longcb[i2d] + uk*longca[i2d];
-	      vmet[i] = vk*longca[i2d] - uk*longcb[i2d];
+	    umet[i] = v[i]*longcb[i2d] + u[i]*longca[i2d];
+	    vmet[i] = v[i]*longca[i2d] - u[i]*longcb[i2d];
 	    }
 	  
 	}
