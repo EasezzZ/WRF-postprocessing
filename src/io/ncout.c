@@ -2,28 +2,17 @@
 
 void ncout_open () {
 
-  // directory name
-  int len = (strlen(wDOMAIN)+strlen(wRUN)+6) * sizeof(char);
-  char *dir = malloc(len);
-  snprintf(dir, len, "out/%s/%s", wDOMAIN, wRUN);
 
-  // create directory
-  int len_cmd = len + 10*sizeof(char);
-  char *cmd = malloc(len_cmd);
-  snprintf(cmd, len_cmd, "mkdir -p %s", dir);
-  system(cmd);
 
   // file name
-  len += (strlen(wDOMAIN) + strlen(wFRAME) + 6) * sizeof(char);
+  int len = (strlen(wDOMAIN) + strlen(wFRAME) + 8) * sizeof(char);
   char* filename = malloc(len);
-  snprintf(filename, len, "%s/%s_%s.nc", dir, wDOMAIN, wFRAME);
+  snprintf(filename, len, "%s-pp_%s.nc", wDOMAIN, wFRAME);
 
   fprintf(stdout, "Output file : %s\n", filename);
   
   nc_error(nc_create(filename, 0, &ncout_ID));
 
-  free (dir);
-  free (cmd);
   free (filename);
 
   nc_error(nc_def_dim(ncout_ID, "model_level", wNZ, &ncout_DIM_Z));

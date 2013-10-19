@@ -24,4 +24,4 @@ gcc -c src/fields/wind/wind.c || exit
 gcc *.o -lnetcdf -o wrfpp  || exit
 
 echo --- run wrfpp --------
-./wrfpp test_d01 2013-10-07_12 2013-10-09_06-00-00 2013-10-09_05-00-00
+./wrfpp test 2013-10-07_12 2013-10-09_06h00 2013-10-09_05h00
