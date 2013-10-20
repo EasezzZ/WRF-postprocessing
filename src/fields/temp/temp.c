@@ -27,6 +27,7 @@ void load_TEMP () {
   double pi;
   
   int i;
+  #pragma omp parallel for private(i)
   for (i=0; i<wN3D; i++) {
     wTHETA[i] += 300;
     pi = pow( (wPRESS[i]*100/p1000mb), (r_d/cp) );
@@ -39,10 +40,11 @@ void load_TEMP () {
   wTEMP_P = malloc (wN2D * ip_nPLEVELS * sizeof(float));
   if (wTEMP_P==NULL) {fprintf(stderr, "rh.c : Cannot allocate wTEMP_P\n"); exit(-1);}
   
-  
+  #pragma omp parallel for private(i)
   for (i=0; i<ip_nALEVELS; i++) {
    interpolate_3d_z (wTEMP, ip_ALEVELS[i], wHEIGHT, &wTEMP_A[wN2D*i]);
   }
+  #pragma omp parallel for private(i)
   for (i=0; i<ip_nPLEVELS; i++) {
    interpolate_3d_z (wTEMP, ip_PLEVELS[i], wPRESS, &wTEMP_P[wN2D*i]);
   }

@@ -28,6 +28,7 @@ void load_PRESS () {
   
   // Full model pressure [=base pressure (PB) + pertubation pressure (P)]
   int i;
+  #pragma omp parallel for private(i)
   for (i=0; i<wN3D; i++) {
     wPRESS[i] = (wPB[i] + wPP[i]) * 0.01;
   }

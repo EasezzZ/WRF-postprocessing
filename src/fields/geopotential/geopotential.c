@@ -32,6 +32,7 @@ void load_GEOPOTENTIAL () {
   nc_error(nc_get_var_float(wrfout_id, p_geopotential_id, wsPH));
   
   int i;
+  #pragma omp parallel for private(i)
   for (i=0; i<wN3D; i++) {
     // unstagger, then geopotential = PH + PHB
     wGEOPOTENTIAL[i] = 0.5 * (wsPHB[i]+wsPHB[i+wN2D]+wsPH[i]+wsPH[i+wN2D]);
@@ -39,6 +40,7 @@ void load_GEOPOTENTIAL () {
     wHEIGHT[i] = wGEOPOTENTIAL[i] / 9.81;
   }
   
+  #pragma omp parallel for private(i)
   for (i=0; i<ip_nPLEVELS; i++) {
    interpolate_3d_z (wGEOPOTENTIAL, ip_PLEVELS[i], wPRESS, &wGEOPOTENTIAL_P[wN2D*i]);
   }

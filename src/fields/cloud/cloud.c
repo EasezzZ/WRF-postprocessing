@@ -23,6 +23,8 @@ void load_CLOUD () {
   int nzh, nzm, nzl;
   int nzhc, nzmc, nzlc;
   int i2d, z, i;
+  
+  #pragma omp parallel for private(i)
   for (i2d=0; i2d<wN2D; i2d++) {
     nzh=nzm=nzl=0;
     nzhc=nzmc=nzlc=0;

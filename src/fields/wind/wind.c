@@ -46,6 +46,7 @@ void load_WIND () {
   // unstagger
   int x, y, z;
   int i, iu, iv;
+  #pragma omp parallel for private(z)
   for (z=0; z<wNZ; z++) {
     for (y=0; y<wNY; y++) {
       for (x=0; x<wNX; x++) {
@@ -96,12 +97,13 @@ void load_WIND () {
   if (wWIND_W_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_W_A\n"); exit(-1);}
   
   
-  
+  #pragma omp parallel for private(i)
   for (i=0; i<ip_nPLEVELS; i++) {
    interpolate_3d_z (wWIND_U, ip_PLEVELS[i], wPRESS, &wWIND_U_P[wN2D*i]);
    interpolate_3d_z (wWIND_V, ip_PLEVELS[i], wPRESS, &wWIND_V_P[wN2D*i]);
    interpolate_3d_z (wWIND_W, ip_PLEVELS[i], wPRESS, &wWIND_W_P[wN2D*i]);
   }
+  #pragma omp parallel for private(i)
   for (i=0; i<ip_nALEVELS; i++) {
    interpolate_3d_z (wWIND_U, ip_ALEVELS[i], wHEIGHT, &wWIND_U_A[wN2D*i]);
    interpolate_3d_z (wWIND_V, ip_ALEVELS[i], wHEIGHT, &wWIND_V_A[wN2D*i]);

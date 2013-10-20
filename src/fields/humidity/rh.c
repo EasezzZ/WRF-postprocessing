@@ -22,6 +22,7 @@ void load_RH () {
   double qvs;
   
   int i;
+  #pragma omp parallel for private(i)
   for (i=0; i<wN3D; i++) {
     es = 10.*svp1*exp(svp2*(wTEMP[i])/(wTK[i]-svp3));
     qvs = ep_3*es/ (wPRESS[i] - (1.-ep_3)*es);
@@ -34,10 +35,11 @@ void load_RH () {
   wRH_P = malloc (wN2D * ip_nPLEVELS * sizeof(float));
   if (wRH_P==NULL) {fprintf(stderr, "rh.c : Cannot allocate wRH_P\n"); exit(-1);}
   
-  
+  #pragma omp parallel for private(i)
   for (i=0; i<ip_nALEVELS; i++) {
    interpolate_3d_z (wRH, ip_ALEVELS[i], wHEIGHT, &wRH_A[wN2D*i]);
   }
+  #pragma omp parallel for private(i)
   for (i=0; i<ip_nPLEVELS; i++) {
    interpolate_3d_z (wRH, ip_PLEVELS[i], wPRESS, &wRH_P[wN2D*i]);
   }

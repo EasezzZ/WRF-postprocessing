@@ -1,7 +1,9 @@
 #!/bin/bash
 
+OPT="-fopenmp"
+
 if [ "$1" == "prod" ]; then
-  OPT="-O3 -march=native"
+  OPT="$OPT -O3 -march=native"
 fi
 
 rm *.o
@@ -30,7 +32,7 @@ gcc $OPT -c src/fields/wind/wind.c || exit
 gcc $OPT -c src/fields/cloud/cloud.c || exit
 
 
-gcc *.o -lnetcdf -o wrfpp  || exit
+gcc *.o -fopenmp -lnetcdf -o wrfpp  || exit
 rm *.o
 
 if [ "$1" != "prod" ]; then

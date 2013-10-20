@@ -15,6 +15,7 @@ void load_PBLH () {
   nc_error(nc_get_var_float(wrfout_id, pblh_id, wPBLH));
 
   int i;
+  #pragma omp parallel for private(i)
   for (i=0; i<wN2D; i++) {
     wPBLTOP[i] = wTOPO[i] + wPBLH[i];
   }

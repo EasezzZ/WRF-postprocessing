@@ -38,6 +38,7 @@ void load_RAIN () {
     nc_error(nc_get_var_float(wrfout_last_id, rain_last_id, wRAIN_LAST));
     nc_error(nc_get_var_float(wrfout_last_id, rainc_last_id, wRAINC_LAST));
     
+    #pragma omp parallel for private(i)
     for (i=0; i<wN2D; i++) {
       wRAIN[i] -= wRAIN_LAST[i];
       wRAINC[i] -= wRAINC_LAST[i];
@@ -49,7 +50,6 @@ void load_RAIN () {
   } else {
     fprintf(stderr, "rain.c : WARNING : no previous rain. Using raw values.\n");
   }
-  
   for (i=0; i<wN2D; i++) {
     wRAIN[i] += wRAINC[i];
   }
