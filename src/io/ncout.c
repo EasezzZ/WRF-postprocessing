@@ -19,12 +19,12 @@ void ncout_open () {
   nc_error(nc_def_dim(ncout_ID, "y", wNY, &ncout_DIM_Y));
   nc_error(nc_def_dim(ncout_ID, "x", wNX, &ncout_DIM_X));
   nc_error(nc_def_dim(ncout_ID, "press_level", ip_nPLEVELS, &ncout_DIM_PLEVEL));
-  nc_error(nc_def_dim(ncout_ID, "meters_level", ip_nMLEVELS, &ncout_DIM_MLEVEL));
+  nc_error(nc_def_dim(ncout_ID, "alti_level", ip_nMLEVELS, &ncout_DIM_MLEVEL));
 
   
   ncout_1DZ_DIM[0] = ncout_DIM_Z;
   ncout_1DP_DIM[0] = ncout_DIM_PLEVEL;
-  ncout_1DM_DIM[0] = ncout_DIM_MLEVEL;
+  ncout_1DA_DIM[0] = ncout_DIM_MLEVEL;
   
   ncout_2D_DIMS[0] = ncout_DIM_Y;
   ncout_2D_DIMS[1] = ncout_DIM_X;

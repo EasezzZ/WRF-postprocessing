@@ -30,7 +30,7 @@ int ncout_3DP_DIMS[3];
 int ncout_3DM_DIMS[3];
 int ncout_1DZ_DIM[1];
 int ncout_1DP_DIM[1];
-int ncout_1DM_DIM[1];
+int ncout_1DA_DIM[1];
 
 void ncout_open ();
 

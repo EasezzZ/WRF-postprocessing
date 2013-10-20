@@ -33,7 +33,7 @@ void load_PRESS () {
   }
   
   /*for (i=0; i<ip_nMLEVELS; i++) {
-    interpolate_3d_z (wPRESS, ip_MLEVELS[i], wHEIGHT, &wPRESS_M[wN2D*i]);
+    interpolate_3d_z (wPRESS, ip_ALEVELS[i], wHEIGHT, &wPRESS_M[wN2D*i]);
   }*/
   
 

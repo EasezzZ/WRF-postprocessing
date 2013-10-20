@@ -9,7 +9,7 @@ void load_WIND () {
 
   nc_error(nc_inq_varid (wrfout_id, "U", &u_id));
   nc_error(nc_inq_varid (wrfout_id, "V", &v_id));
-  nc_error(nc_inq_varid (wrfout_id, "W", &v_id));
+  nc_error(nc_inq_varid (wrfout_id, "W", &w_id));
   
   
   wU_raw = malloc (wNXS * wNY * wNZ * sizeof(float));
@@ -41,7 +41,7 @@ void load_WIND () {
   
   nc_error(nc_get_var_float(wrfout_id, u_id, wU_raw));
   nc_error(nc_get_var_float(wrfout_id, v_id, wV_raw));
-  nc_error(nc_get_var_float(wrfout_id, v_id, wW_raw));
+  nc_error(nc_get_var_float(wrfout_id, w_id, wW_raw));
   
   // unstagger
   int x, y, z;
@@ -92,7 +92,7 @@ void load_WIND () {
   if (wWIND_U_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_U_A\n"); exit(-1);}
   wWIND_V_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
   if (wWIND_V_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_V_A\n"); exit(-1);}
-  wWIND_V_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
+  wWIND_W_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
   if (wWIND_W_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_W_A\n"); exit(-1);}
   
   
@@ -103,9 +103,9 @@ void load_WIND () {
    interpolate_3d_z (wWIND_W, ip_PLEVELS[i], wPRESS, &wWIND_W_P[wN2D*i]);
   }
   for (i=0; i<ip_nMLEVELS; i++) {
-   interpolate_3d_z (wWIND_U, ip_MLEVELS[i], wHEIGHT, &wWIND_U_A[wN2D*i]);
-   interpolate_3d_z (wWIND_V, ip_MLEVELS[i], wHEIGHT, &wWIND_V_A[wN2D*i]);
-   interpolate_3d_z (wWIND_W, ip_MLEVELS[i], wHEIGHT, &wWIND_W_A[wN2D*i]);
+   interpolate_3d_z (wWIND_U, ip_ALEVELS[i], wHEIGHT, &wWIND_U_A[wN2D*i]);
+   interpolate_3d_z (wWIND_V, ip_ALEVELS[i], wHEIGHT, &wWIND_V_A[wN2D*i]);
+   interpolate_3d_z (wWIND_W, ip_ALEVELS[i], wHEIGHT, &wWIND_W_A[wN2D*i]);
   }
   
 }
