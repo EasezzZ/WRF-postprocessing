@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
   
   fprintf(stdout, "== Setting metadata ==\n");
   set_meta_LATLON ();
+  set_meta_LAMBERT();
   set_meta_MODEL_LEVEL ();
   set_meta_ip_levels();
   set_meta_TOPO ();
