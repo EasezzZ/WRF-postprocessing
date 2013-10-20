@@ -18,7 +18,7 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
   // global wCEN_LON
   // global wLAT
   // global wLON
-  // global ncout_NaN
+  // global NC_FILL_FLOAT
   // global wMAP_PROJ
   // global wTRUELAT1
   // global wTRUELAT2
@@ -91,14 +91,9 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
       for (x=0; x<wNX; x++) {
 	size_t i = x+y*wNX;
 
-	  if ( (u[i]!=u[i]) || (v[i]!=v[i]) ) { // check if NaN
-	    umet[i] = ncout_NaN;
-	    vmet[i] = ncout_NaN;
-	  } else {
-	    umet[i] = v[i]*longcb[i] + u[i]*longca[i];
-	    vmet[i] = v[i]*longca[i] - u[i]*longcb[i];
-	  }
-	
+	umet[i] = v[i]*longcb[i] + u[i]*longca[i];
+	vmet[i] = v[i]*longca[i] - u[i]*longcb[i];
+    
       }
     }
     
@@ -110,13 +105,8 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
 	  size_t i = x+y*wNX+z*wN2D;
 	  size_t i2d = x+y*wNX;
 
-	    if ( (u[i]!=u[i]) || (v[i]!=v[i]) ) {
-	      umet[i] = ncout_NaN;
-	      vmet[i] = ncout_NaN;
-	    } else {
-	    umet[i] = v[i]*longcb[i2d] + u[i]*longca[i2d];
-	    vmet[i] = v[i]*longca[i2d] - u[i]*longcb[i2d];
-	    }
+	  umet[i] = v[i]*longcb[i2d] + u[i]*longca[i2d];
+	  vmet[i] = v[i]*longca[i2d] - u[i]*longcb[i2d];
 	  
 	}
       }

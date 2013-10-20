@@ -67,7 +67,7 @@ void ncout_set_meta (int var_id, const char *name, const char * text) {
 
 void ncout_def_var_float (char * name, int ndims, int *dim_ids, int *var_id) {
     nc_error(nc_def_var (ncout_ID, name, NC_FLOAT, ndims, dim_ids, var_id));
-    float fillval[] = {ncout_NaN};
+    float fillval[] = {NC_FILL_FLOAT};
     nc_error(nc_put_att_float (ncout_ID, *var_id, "_FillValue", NC_FLOAT, 1, fillval));
 }
 

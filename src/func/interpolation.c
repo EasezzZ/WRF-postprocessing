@@ -49,7 +49,7 @@ void interpolate_3d_z (float *data3d, float ip_level, float *levels, float *data
   for (i=0; i<wN2D; i++) {
 
     // initialise to MISSING
-    data2d[i] = ncout_NaN; 
+    data2d[i] = NC_FILL_FLOAT; 
     interp = 0;
     kp = wNZ;
     

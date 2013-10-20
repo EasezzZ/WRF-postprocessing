@@ -46,17 +46,17 @@ void load_CLOUD () {
     if (nzl > 0) {
       wCLOUDPCT_L[i2d] = 100.*nzlc/nzl;
     } else {
-      wCLOUDPCT_L[i2d] = ncout_NaN ;
+      wCLOUDPCT_L[i2d] = NC_FILL_FLOAT ;
     }
     if (nzm > 0) {
       wCLOUDPCT_M[i2d] = 100.*nzmc/nzm;
     } else {
-      wCLOUDPCT_M[i2d] = ncout_NaN ;
+      wCLOUDPCT_M[i2d] = NC_FILL_FLOAT ;
     }
     if (nzh > 0) {
       wCLOUDPCT_H[i2d] = 100.*nzhc/nzh;
     } else {
-      wCLOUDPCT_H[i2d] = ncout_NaN ;
+      wCLOUDPCT_H[i2d] = NC_FILL_FLOAT ;
     }
   }
 
