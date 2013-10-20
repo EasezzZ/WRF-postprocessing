@@ -11,22 +11,34 @@
 
 float *wWIND_U;
 float *wWIND_V;
+float *wWIND_W;
+
 float *wWIND_U_P;
 float *wWIND_V_P;
-float *wWIND_U_M;
-float *wWIND_V_M;
+float *wWIND_W_P;
+
+float *wWIND_U_A;
+float *wWIND_V_A;
+float *wWIND_W_A;
 
 float *wU_raw;
 float *wV_raw;
+float *wW_raw;
+
 float *wU_unstag_raw;
 float *wV_unstag_raw;
 
 int idWIND_U;
 int idWIND_V;
+int idWIND_W;
+
 int idWIND_U_P;
 int idWIND_V_P;
-int idWIND_U_M;
-int idWIND_V_M;
+int idWIND_W_P;
+
+int idWIND_U_A;
+int idWIND_V_A;
+int idWIND_W_A;
 
 void load_WIND ();
 void free_WIND ();
