@@ -18,7 +18,7 @@ static const float ip_ALEVELS[] = {50, 200, 400, 600, 800, 1000, 1200, 1400, 160
 
 static const int ip_nPLEVELS = 36;
 // TODO: findout why segfault if n=37 and last level = 100 (no fault if last = 120)
-static const int ip_nMLEVELS = 38;
+static const int ip_nALEVELS = 38;
 
 int idPLEVELS;
 int idALEVELS;

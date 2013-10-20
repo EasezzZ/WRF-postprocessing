@@ -88,11 +88,11 @@ void load_WIND () {
   wWIND_W_P = malloc (wN2D * ip_nPLEVELS * sizeof(float));
   if (wWIND_W_P==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_W_P\n"); exit(-1);}
   
-  wWIND_U_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
+  wWIND_U_A = malloc (wN2D * ip_nALEVELS * sizeof(float));
   if (wWIND_U_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_U_A\n"); exit(-1);}
-  wWIND_V_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
+  wWIND_V_A = malloc (wN2D * ip_nALEVELS * sizeof(float));
   if (wWIND_V_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_V_A\n"); exit(-1);}
-  wWIND_W_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
+  wWIND_W_A = malloc (wN2D * ip_nALEVELS * sizeof(float));
   if (wWIND_W_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_W_A\n"); exit(-1);}
   
   
@@ -102,7 +102,7 @@ void load_WIND () {
    interpolate_3d_z (wWIND_V, ip_PLEVELS[i], wPRESS, &wWIND_V_P[wN2D*i]);
    interpolate_3d_z (wWIND_W, ip_PLEVELS[i], wPRESS, &wWIND_W_P[wN2D*i]);
   }
-  for (i=0; i<ip_nMLEVELS; i++) {
+  for (i=0; i<ip_nALEVELS; i++) {
    interpolate_3d_z (wWIND_U, ip_ALEVELS[i], wHEIGHT, &wWIND_U_A[wN2D*i]);
    interpolate_3d_z (wWIND_V, ip_ALEVELS[i], wHEIGHT, &wWIND_V_A[wN2D*i]);
    interpolate_3d_z (wWIND_W, ip_ALEVELS[i], wHEIGHT, &wWIND_W_A[wN2D*i]);
@@ -138,9 +138,9 @@ void set_meta_WIND () {
   ncout_def_var_float("wind_v_p", 3, ncout_3DP_DIMS, &idWIND_V_P);
   ncout_def_var_float("wind_w_p", 3, ncout_3DP_DIMS, &idWIND_W_P);
   
-  ncout_def_var_float("wind_u_a", 3, ncout_3DM_DIMS, &idWIND_U_A);
-  ncout_def_var_float("wind_v_a", 3, ncout_3DM_DIMS, &idWIND_V_A);
-  ncout_def_var_float("wind_w_a", 3, ncout_3DM_DIMS, &idWIND_W_A);
+  ncout_def_var_float("wind_u_a", 3, ncout_3DA_DIMS, &idWIND_U_A);
+  ncout_def_var_float("wind_v_a", 3, ncout_3DA_DIMS, &idWIND_V_A);
+  ncout_def_var_float("wind_w_a", 3, ncout_3DA_DIMS, &idWIND_W_A);
 
   
   ncout_set_meta (idWIND_U, "long_name", "wind_u_vector");

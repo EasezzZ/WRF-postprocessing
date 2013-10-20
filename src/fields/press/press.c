@@ -20,7 +20,7 @@ void load_PRESS () {
   wPRESS = malloc (wN3D * sizeof(float));
   if (wPRESS==NULL) {fprintf(stderr, "press.c : Cannot allocate wPRESS\n"); exit(-1);}  
   
-  /*wPRESS_M = malloc (wN2D * ip_nMLEVELS * sizeof(float));
+  /*wPRESS_M = malloc (wN2D * ip_nALEVELS * sizeof(float));
   if (wPRESS==NULL) {fprintf(stderr, "press.c : Cannot allocate wPRESS_M\n"); exit(-1);}*/
   
   nc_error(nc_get_var_float(wrfout_id, b_press_id, wPB));
@@ -32,7 +32,7 @@ void load_PRESS () {
     wPRESS[i] = (wPB[i] + wPP[i]) * 0.01;
   }
   
-  /*for (i=0; i<ip_nMLEVELS; i++) {
+  /*for (i=0; i<ip_nALEVELS; i++) {
     interpolate_3d_z (wPRESS, ip_ALEVELS[i], wHEIGHT, &wPRESS_M[wN2D*i]);
   }*/
   
@@ -50,7 +50,7 @@ void write_PRESS () {
 void set_meta_PRESS () {
   
   ncout_def_var_float("press", 3, ncout_3D_DIMS, &idPRESS);
-  //ncout_def_var_float("press_m", 3, ncout_3DM_DIMS, &idPRESS_M);
+  //ncout_def_var_float("press_m", 3, ncout_3DA_DIMS, &idPRESS_M);
 
   ncout_set_meta (idPRESS, "long_name", "air_pressure");
   ncout_set_meta (idPRESS, "standard_name", "air_pressure");

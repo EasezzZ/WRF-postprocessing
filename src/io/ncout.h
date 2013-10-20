@@ -22,14 +22,14 @@ int ncout_ID;
 int ncout_DIM_X;
 int ncout_DIM_Y;
 int ncout_DIM_Z;
-int ncout_DIM_MLEVEL;
+int ncout_DIM_ALEVEL;
 int ncout_DIM_PLEVEL;
 
 
 int ncout_2D_DIMS[2];
 int ncout_3D_DIMS[3];
 int ncout_3DP_DIMS[3];
-int ncout_3DM_DIMS[3];
+int ncout_3DA_DIMS[3];
 int ncout_1DZ_DIM[1];
 int ncout_1DP_DIM[1];
 int ncout_1DA_DIM[1];
