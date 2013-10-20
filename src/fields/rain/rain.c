@@ -71,14 +71,14 @@ void set_meta_RAIN () {
   ncout_set_meta (idRAIN, "long_name", "rainfall_over_last_hour");
   ncout_set_meta (idRAIN, "standard_name", "");
   ncout_set_meta (idRAIN, "description", "Total rainfall accumulated over last hour. Convective rainfall is included.");
-  ncout_set_meta (idRAIN, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/rain/rain.c");
+  ncout_set_meta (idRAIN, "reference", "http://doc.omd.li/wrfpp/rain");
   ncout_set_meta (idRAIN, "units", "mm h-1");
   ncout_set_meta (idRAIN, "coordinates", "lon lat");
   
   ncout_set_meta (idRAINC, "long_name", "convective_rainfall_over_last_hour");
   ncout_set_meta (idRAINC, "standard_name", "");
   ncout_set_meta (idRAINC, "description", "Rainfall from convective clouds accumulated over last hour");
-  ncout_set_meta (idRAINC, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/rain/rain.c");
+  ncout_set_meta (idRAINC, "reference", "http://doc.omd.li/wrfpp/rainc");
   ncout_set_meta (idRAINC, "units", "mm h-1");
   ncout_set_meta (idRAINC, "coordinates", "lon lat");
   

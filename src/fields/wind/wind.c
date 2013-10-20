@@ -148,21 +148,21 @@ void set_meta_WIND () {
   ncout_set_meta (idWIND_U, "long_name", "wind_u_vector");
   ncout_set_meta (idWIND_U, "standard_name", "");
   ncout_set_meta (idWIND_U, "description", "Wind vector on X axis.");
-  ncout_set_meta (idWIND_U, "reference", "");
+  ncout_set_meta (idWIND_U, "reference", "http://doc.omd.li/wrfpp/wind_u");
   ncout_set_meta (idWIND_U, "units", "m s-1");
   ncout_set_meta (idWIND_U, "coordinates", "model_level lon lat");
   
   ncout_set_meta (idWIND_V, "long_name", "wind_v_vector");
   ncout_set_meta (idWIND_V, "standard_name", "");
   ncout_set_meta (idWIND_V, "description", "Wind vector on Y axis.");
-  ncout_set_meta (idWIND_V, "reference", "");
+  ncout_set_meta (idWIND_V, "reference", "http://doc.omd.li/wrfpp/wind_v");
   ncout_set_meta (idWIND_V, "units", "m s-1");
   ncout_set_meta (idWIND_V, "coordinates", "model_level lon lat");
   
   ncout_set_meta (idWIND_W, "long_name", "wind_w_vector");
   ncout_set_meta (idWIND_W, "standard_name", "");
   ncout_set_meta (idWIND_W, "description", "Wind vector on Z axis.");
-  ncout_set_meta (idWIND_W, "reference", "");
+  ncout_set_meta (idWIND_W, "reference", "http://doc.omd.li/wrfpp/wind_w");
   ncout_set_meta (idWIND_W, "units", "m s-1");
   ncout_set_meta (idWIND_W, "coordinates", "model_level lon lat");
   
@@ -171,21 +171,21 @@ void set_meta_WIND () {
   ncout_set_meta (idWIND_U_P, "long_name", "wind_u_vector_on_pressure_level");
   ncout_set_meta (idWIND_U_P, "standard_name", "");
   ncout_set_meta (idWIND_U_P, "description", "Wind vector on X axis. Interpolated to pressure levels.");
-  ncout_set_meta (idWIND_U_P, "reference", "");
+  ncout_set_meta (idWIND_U_P, "reference", "http://doc.omd.li/wrfpp/wind_u_p");
   ncout_set_meta (idWIND_U_P, "units", "m s-1");
   ncout_set_meta (idWIND_U_P, "coordinates", "press_level lon lat");
   
   ncout_set_meta (idWIND_V_P, "long_name", "wind_v_vector_on_pressure_level");
   ncout_set_meta (idWIND_V_P, "standard_name", "");
   ncout_set_meta (idWIND_V_P, "description", "Wind vector on Y axis. Interpolated to pressure levels");
-  ncout_set_meta (idWIND_V_P, "reference", "");
+  ncout_set_meta (idWIND_V_P, "reference", "http://doc.omd.li/wrfpp/wind_v_p");
   ncout_set_meta (idWIND_V_P, "units", "m s-1");
   ncout_set_meta (idWIND_V_P, "coordinates", "press_level lon lat");
   
   ncout_set_meta (idWIND_W_P, "long_name", "wind_w_vector_on_pressure_level");
   ncout_set_meta (idWIND_W_P, "standard_name", "");
   ncout_set_meta (idWIND_W_P, "description", "Wind vector on Z axis. Interpolated to pressure levels");
-  ncout_set_meta (idWIND_W_P, "reference", "");
+  ncout_set_meta (idWIND_W_P, "reference", "http://doc.omd.li/wrfpp/wind_w_p");
   ncout_set_meta (idWIND_W_P, "units", "m s-1");
   ncout_set_meta (idWIND_W_P, "coordinates", "press_level lon lat");
   
@@ -193,21 +193,21 @@ void set_meta_WIND () {
   ncout_set_meta (idWIND_U_A, "long_name", "wind_u_vector_on_altitude_level");
   ncout_set_meta (idWIND_U_A, "standard_name", "");
   ncout_set_meta (idWIND_U_A, "description", "Wind vector on X axis. Interpolated to altitude levels.");
-  ncout_set_meta (idWIND_U_A, "reference", "");
+  ncout_set_meta (idWIND_U_A, "reference", "http://doc.omd.li/wrfpp/wind_u_a");
   ncout_set_meta (idWIND_U_A, "units", "m s-1");
   ncout_set_meta (idWIND_U_A, "coordinates", "alti_level lon lat");
   
   ncout_set_meta (idWIND_V_A, "long_name", "wind_v_vector_on_altitude_level");
   ncout_set_meta (idWIND_V_A, "standard_name", "");
   ncout_set_meta (idWIND_V_A, "description", "Wind vector on Y axis. Interpolated to altitude levels");
-  ncout_set_meta (idWIND_V_A, "reference", "");
+  ncout_set_meta (idWIND_V_A, "reference", "http://doc.omd.li/wrfpp/wind_v_a");
   ncout_set_meta (idWIND_V_A, "units", "m s-1");
   ncout_set_meta (idWIND_V_A, "coordinates", "alti_level lon lat");
   
   ncout_set_meta (idWIND_W_A, "long_name", "wind_w_vector_on_altitude_level");
   ncout_set_meta (idWIND_W_A, "standard_name", "");
   ncout_set_meta (idWIND_W_A, "description", "Wind vector on Z axis. Interpolated to altitude levels");
-  ncout_set_meta (idWIND_W_A, "reference", "");
+  ncout_set_meta (idWIND_W_A, "reference", "http://doc.omd.li/wrfpp/wind_w_a");
   ncout_set_meta (idWIND_W_A, "units", "m s-1");
   ncout_set_meta (idWIND_W_A, "coordinates", "alti_level lon lat");
   

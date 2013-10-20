@@ -35,7 +35,7 @@ void set_meta_PBLH () {
   ncout_set_meta (idPBLH, "long_name", "atmosphere_boundary_layer_thickness");
   ncout_set_meta (idPBLH, "standard_name", "atmosphere_boundary_layer_thickness");
   ncout_set_meta (idPBLH, "description", "The atmosphere boundary layer thickness is the \"depth\" or \"height\" of the (atmosphere) planetary boundary layer.");
-  ncout_set_meta (idPBLH, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/pbl/pblh.c");
+  ncout_set_meta (idPBLH, "reference", "http://doc.omd.li/wrfpp/pblh");
   ncout_set_meta (idPBLH, "units", "m");
   ncout_set_meta (idPBLH, "coordinates", "lon lat");
   

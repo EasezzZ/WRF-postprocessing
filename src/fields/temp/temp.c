@@ -69,14 +69,14 @@ void set_meta_TEMP () {
   ncout_set_meta (idTEMP, "long_name", "air_temperature");
   ncout_set_meta (idTEMP, "standard_name", "air_temperature");
   ncout_set_meta (idTEMP, "description", "");
-  ncout_set_meta (idTEMP, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/temp/temp.c");
+  ncout_set_meta (idTEMP, "reference", "http://doc.omd.li/wrfpp/temp");
   ncout_set_meta (idTEMP, "units", "degree_Celsius");
   ncout_set_meta (idTEMP, "coordinates", "model_level lon lat");
   
   ncout_set_meta (idTEMP_A, "long_name", "air_temperature_on_altitude_level");
   ncout_set_meta (idTEMP_A, "standard_name", "air_temperature");
   ncout_set_meta (idTEMP_A, "description", "air temperature, interpolated to altitude levels");
-  ncout_set_meta (idTEMP_A, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/temp/temp.c");
+  ncout_set_meta (idTEMP_A, "reference", "http://doc.omd.li/wrfpp/temp_a");
   ncout_set_meta (idTEMP_A, "units", "degree_Celsius");
   ncout_set_meta (idTEMP_A, "coordinates", "alti_level lon lat");
   
@@ -84,7 +84,7 @@ void set_meta_TEMP () {
   ncout_set_meta (idTEMP_P, "long_name", "air_temperature_on_pressure_level");
   ncout_set_meta (idTEMP_P, "standard_name", "air_temperature");
   ncout_set_meta (idTEMP_P, "description", "air temperature, interpolated to pressure levels");
-  ncout_set_meta (idTEMP_P, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/temp/temp.c");
+  ncout_set_meta (idTEMP_P, "reference", "http://doc.omd.li/wrfpp/temp_p");
   ncout_set_meta (idTEMP_P, "units", "degree_Celsius");
   ncout_set_meta (idTEMP_P, "coordinates", "press_level lon lat");
   

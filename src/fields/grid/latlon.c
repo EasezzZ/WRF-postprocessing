@@ -34,12 +34,14 @@ void set_meta_LATLON () {
   ncout_set_meta (idLAT, "long_name", "latitude");
   ncout_set_meta (idLAT, "standard_name", "latitude");
   ncout_set_meta (idLAT, "units", "degrees_north");
+  ncout_set_meta (idLAT, "reference", "http://doc.omd.li/wrfpp/latlon");
   ncout_set_meta (idLAT, "_CoordinateAxisType", "Lat");
   ncout_set_meta (idLAT, "coordinates", "lon lat");
   
   ncout_set_meta (idLON, "long_name", "longitude");
   ncout_set_meta (idLON, "standard_name", "longitude");
   ncout_set_meta (idLON, "units", "degrees_east");
+  ncout_set_meta (idLON, "reference", "http://doc.omd.li/wrfpp/latlon");
   ncout_set_meta (idLON, "_CoordinateAxisType", "Lon");
   ncout_set_meta (idLON, "coordinates", "lon lat");
   

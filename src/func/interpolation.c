@@ -14,6 +14,7 @@ void set_meta_ip_levels () {
   ncout_set_meta (idALEVELS, "standard_name", "");
   ncout_set_meta (idALEVELS, "description", "Interpolated altitude levels above mean sea level.");
   ncout_set_meta (idALEVELS, "units", "m");
+  ncout_set_meta (idALEVELS, "reference", "http://doc.omd.li/wrfpp/alti_level");
   ncout_set_meta (idALEVELS, "_CoordinateAxisType", "Height");
   ncout_set_meta (idALEVELS, "coordinates", "alti_level");
   
@@ -21,6 +22,7 @@ void set_meta_ip_levels () {
   ncout_set_meta (idPLEVELS, "standard_name", "");
   ncout_set_meta (idPLEVELS, "description", "Interpolated pressure levels.");
   ncout_set_meta (idPLEVELS, "units", "hPa");
+  ncout_set_meta (idPLEVELS, "reference", "http://doc.omd.li/wrfpp/press_level");
   ncout_set_meta (idPLEVELS, "_CoordinateAxisType", "Pressure");
   ncout_set_meta (idPLEVELS, "coordinates", "press_level");
 }

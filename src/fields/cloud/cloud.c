@@ -82,21 +82,21 @@ void set_meta_CLOUD () {
   ncout_set_meta (idCLOUD, "long_name", "cloud");
   ncout_set_meta (idCLOUD, "standard_name", "cloud");
   ncout_set_meta (idCLOUD, "description", "Cloud presence in model grid point.");
-  ncout_set_meta (idCLOUD, "reference", "");
+  ncout_set_meta (idCLOUD, "reference", "http://doc.omd.li/wrfpp/cloud");
   ncout_set_meta (idCLOUD, "units", "0=no cloud, 1=cloud");
   ncout_set_meta (idCLOUD, "coordinates", "model_level lon lat");
   
   ncout_set_meta (idCLOUDPCT_H, "long_name", "high_clouds_percentage");
   ncout_set_meta (idCLOUDPCT_H, "standard_name", "");
   ncout_set_meta (idCLOUDPCT_H, "description", "Percentage of clouds on vertical grid points above 450hPa level.");
-  ncout_set_meta (idCLOUDPCT_H, "reference", "");
+  ncout_set_meta (idCLOUDPCT_H, "reference", "http://doc.omd.li/wrfpp/cloudpct_h");
   ncout_set_meta (idCLOUDPCT_H, "units", "percent");
   ncout_set_meta (idCLOUDPCT_H, "coordinates", "lon lat");
   
   ncout_set_meta (idCLOUDPCT_M, "long_name", "medium_clouds_percentage");
   ncout_set_meta (idCLOUDPCT_M, "standard_name", "");
   ncout_set_meta (idCLOUDPCT_M, "description", "Percentage of clouds on vertical grid points between 800hPa and 450hPa levels.");
-  ncout_set_meta (idCLOUDPCT_M, "reference", "");
+  ncout_set_meta (idCLOUDPCT_M, "reference", "http://doc.omd.li/wrfpp/cloudpct_m");
   ncout_set_meta (idCLOUDPCT_M, "units", "percent");
   ncout_set_meta (idCLOUDPCT_M, "coordinates", "lon lat");
   
@@ -104,7 +104,7 @@ void set_meta_CLOUD () {
   ncout_set_meta (idCLOUDPCT_L, "long_name", "low_clouds_percentage");
   ncout_set_meta (idCLOUDPCT_L, "standard_name", "");
   ncout_set_meta (idCLOUDPCT_L, "description", "Percentage of clouds on vertical grid points below 800hPa level.");
-  ncout_set_meta (idCLOUDPCT_L, "reference", "");
+  ncout_set_meta (idCLOUDPCT_L, "reference", "http://doc.omd.li/wrfpp/cloudpct_l");
   ncout_set_meta (idCLOUDPCT_L, "units", "percent");
   ncout_set_meta (idCLOUDPCT_L, "coordinates", "lon lat");
   

@@ -63,21 +63,21 @@ void set_meta_RH () {
   ncout_set_meta (idRH, "long_name", "relative_humidity");
   ncout_set_meta (idRH, "standard_name", "relative_humidity");
   ncout_set_meta (idRH, "description", "");
-  ncout_set_meta (idRH, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/humidity/rh.c");
+  ncout_set_meta (idRH, "reference", "http://doc.omd.li/wrfpp/rh");
   ncout_set_meta (idRH, "units", "percent");
   ncout_set_meta (idRH, "coordinates", "model_level lon lat");
   
   ncout_set_meta (idRH_A, "long_name", "relative_humidity_on_altitude_level");
   ncout_set_meta (idRH_A, "standard_name", "relative_humidity");
   ncout_set_meta (idRH_A, "description", "relative humidity in air, interpolated to altitude levels");
-  ncout_set_meta (idRH_A, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/humidity/rh.c");
+  ncout_set_meta (idRH_A, "reference", "http://doc.omd.li/wrfpp/rh_a");
   ncout_set_meta (idRH_A, "units", "percent");
   ncout_set_meta (idRH_A, "coordinates", "alti_level lon lat");
   
   ncout_set_meta (idRH_P, "long_name", "relative_humidity_on_pressure_level");
   ncout_set_meta (idRH_P, "standard_name", "relative_humidity");
   ncout_set_meta (idRH_P, "description", "relative humidity in air, interpolated to pressure levels");
-  ncout_set_meta (idRH_P, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/humidity/rh.c");
+  ncout_set_meta (idRH_P, "reference", "http://doc.omd.li/wrfpp/rh_p");
   ncout_set_meta (idRH_P, "units", "percent");
   ncout_set_meta (idRH_P, "coordinates", "press_level lon lat");
   

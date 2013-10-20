@@ -56,7 +56,7 @@ void set_meta_PRESS () {
   ncout_set_meta (idPRESS, "long_name", "air_pressure");
   ncout_set_meta (idPRESS, "standard_name", "air_pressure");
   ncout_set_meta (idPRESS, "description", "");
-  ncout_set_meta (idPRESS, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/press/press.c");
+  ncout_set_meta (idPRESS, "reference", "http://doc.omd.li/wrfpp/press");
   ncout_set_meta (idPRESS, "units", "hPa");
   ncout_set_meta (idPRESS, "coordinates", "model_level lon lat");
   
