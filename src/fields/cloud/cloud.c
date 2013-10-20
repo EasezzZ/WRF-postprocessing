@@ -44,17 +44,17 @@ void load_CLOUD () {
     if (nzl > 0) {
       wCLOUDPCT_L[i2d] = 100.*nzlc/nzl;
     } else {
-      wCLOUDPCT_L[i2d] = NC_FILL_FLOAT ;
+      wCLOUDPCT_L[i2d] = ncout_NaN ;
     }
     if (nzm > 0) {
       wCLOUDPCT_M[i2d] = 100.*nzmc/nzm;
     } else {
-      wCLOUDPCT_M[i2d] = NC_FILL_FLOAT ;
+      wCLOUDPCT_M[i2d] = ncout_NaN ;
     }
     if (nzh > 0) {
       wCLOUDPCT_H[i2d] = 100.*nzhc/nzh;
     } else {
-      wCLOUDPCT_H[i2d] = NC_FILL_FLOAT ;
+      wCLOUDPCT_H[i2d] = ncout_NaN ;
     }
   }
 
@@ -79,7 +79,7 @@ void set_meta_CLOUD () {
 
   ncout_set_meta (idCLOUD, "long_name", "cloud");
   ncout_set_meta (idCLOUD, "standard_name", "cloud");
-  ncout_set_meta (idCLOUD, "description", "Cloud presence.");
+  ncout_set_meta (idCLOUD, "description", "Cloud presence in model grid point.");
   ncout_set_meta (idCLOUD, "reference", "");
   ncout_set_meta (idCLOUD, "units", "0=no cloud, 1=cloud");
   ncout_set_meta (idCLOUD, "coordinates", "model_level lon lat");

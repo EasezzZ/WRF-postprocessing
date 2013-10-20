@@ -16,6 +16,8 @@
 #define DIM_MLEVEL 8
 #define DIM_PLEVEL 16
 
+static const float ncout_NaN = 0./0.;
+
 int ncout_ID;
 int ncout_DIM_X;
 int ncout_DIM_Y;
