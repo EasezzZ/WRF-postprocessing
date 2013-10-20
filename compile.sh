@@ -23,9 +23,11 @@ gcc -c src/fields/temp/tc2.c || exit
 gcc -c src/fields/rain/rain.c || exit
 gcc -c src/fields/humidity/rh.c || exit
 gcc -c src/fields/wind/wind.c || exit
+gcc -c src/fields/cloud/cloud.c || exit
 
 
 gcc *.o -lnetcdf -o wrfpp  || exit
+rm *.o
 
 echo --- run wrfpp --------
-./wrfpp test 2013-10-07_12 2013-10-09_06h00 2013-10-09_05h00
+./wrfpp eu1 2013-10-07_12 2013-10-20_12h00 2013-10-20_11h00
