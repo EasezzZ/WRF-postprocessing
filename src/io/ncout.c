@@ -5,9 +5,9 @@ void ncout_open () {
 
 
   // file name
-  int len = (strlen(wDOMAIN) + strlen(wFRAME) + 8) * sizeof(char);
+  int len = (strlen(wDOMAIN) + strlen(wRUN) + strlen(wFRAME_N_STR) + 9) * sizeof(char);
   char* filename = malloc(len);
-  snprintf(filename, len, "%s-pp_%s.nc", wDOMAIN, wFRAME);
+  snprintf(filename, len, "%s-pp_%s_%s.nc", wDOMAIN, wRUN, wFRAME_N_STR);
 
   fprintf(stdout, "Output file : %s\n", filename);
   
@@ -51,8 +51,7 @@ void ncout_open () {
   //ncout_set_meta (NC_GLOBAL, "comment", "");
   ncout_set_meta (NC_GLOBAL, "conventions", "CF-1.6");
   ncout_set_meta (NC_GLOBAL, "license", "ODC-By http://opendatacommons.org/licenses/by/summary/");
-  ncout_set_meta (NC_GLOBAL, "run", wRUN);
-  ncout_set_meta (NC_GLOBAL, "run_start", wRUN_START);
+  ncout_set_meta (NC_GLOBAL, "run", wRUN_START);
   ncout_set_meta (NC_GLOBAL, "frame", wFRAME);
   ncout_set_meta (NC_GLOBAL, "domain", wDOMAIN);
   ncout_set_meta (NC_GLOBAL, "_wrfpp-git-commit", git_commit);

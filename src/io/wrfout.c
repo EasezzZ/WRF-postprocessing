@@ -6,30 +6,36 @@ void wrfout_open (int argc, char *argv[]) {
   
   wDOMAIN = argv[1];
   wRUN  = argv[2];
-  wFRAME  = argv[3];
-  if (argc == 5) {
-    wFRAME_LAST = argv[4];
+  wFRAME  = argv[3];  
+  wFRAME_N_STR = argv[4];
+  char frame_str_last[5];
+  
+  wFRAME_N = atoi(wFRAME_N_STR);
+  if (wFRAME_N > 0) {
+    wFRAME_N_LAST = wFRAME_N-1;
+    sprintf(frame_str_last, "%d", wFRAME_N_LAST);
   } else {
-    wFRAME_LAST = NULL;
+    wFRAME_N_LAST = -1;
   }
   
-  int len = (strlen(wDOMAIN)+strlen(wFRAME)+9)* sizeof(char);
+  int len = (strlen(wDOMAIN)+strlen(wRUN)+strlen(wFRAME_N_STR)+10)* sizeof(char);
   char *path = malloc(len);
   
-  snprintf(path, len, "%s-raw_%s.nc", wDOMAIN, wFRAME);
+  snprintf(path, len, "%s-raw_%s_%s.nc", wDOMAIN, wRUN, wFRAME_N_STR);
   fprintf(stdout, "Input file : %s\n", path);
   nc_error(nc_open(path, NC_NOWRITE, &wrfout_id));
   free (path);
   
-  if (wFRAME_LAST != NULL ) {
+  if (wFRAME_N_LAST >= 0 ) {
+    len = (strlen(wDOMAIN)+strlen(wRUN)+strlen(frame_str_last)+10)* sizeof(char);
     char *last_path = malloc(len);
-    snprintf(last_path, len, "%s-raw_%s.nc", wDOMAIN, wFRAME_LAST);
+    snprintf(last_path, len, "%s-raw_%s_%s.nc", wDOMAIN, wRUN, frame_str_last);
     if( access( last_path, F_OK ) != -1 ) {
       fprintf(stdout, "Last file : %s\n", last_path);
       nc_error(nc_open(last_path, NC_NOWRITE, &wrfout_last_id));
     } else {
       fprintf(stdout, "WARNING ! Cannot open last file :\n%s\n", last_path);
-      wFRAME_LAST = NULL;
+      wFRAME_N_LAST = -1;
     }    
     // TODO: check current and last files dimensions are the same
     free (last_path);
@@ -89,7 +95,7 @@ void wrfout_open (int argc, char *argv[]) {
 void wrfout_close () {
    nc_error(nc_close(wrfout_id));
    free(wRUN_START);
-   if (wFRAME_LAST != NULL) { // TODO: check if the file is really open
+   if ( wFRAME_N_LAST >= 0 ) { // TODO: check if the file is really open
      nc_error(nc_close(wrfout_last_id));
    }
 }

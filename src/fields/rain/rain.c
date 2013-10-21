@@ -20,7 +20,7 @@ void load_RAIN () {
   
   int i;
   
-  if (wFRAME_LAST != NULL) {
+  if (wFRAME_N_LAST >= 0) {
     fprintf(stdout, "Getting accumulated rain values from previous file\n");
     
     int rain_last_id;
