@@ -9,7 +9,7 @@ void load_WIND () {
 
   nc_error(nc_inq_varid (wrfout_id, "U", &u_id));
   nc_error(nc_inq_varid (wrfout_id, "V", &v_id));
-  nc_error(nc_inq_varid (wrfout_id, "W", &v_id));
+  nc_error(nc_inq_varid (wrfout_id, "W", &w_id));
   
   
   wU_raw = malloc (wNXS * wNY * wNZ * sizeof(float));
@@ -92,7 +92,7 @@ void load_WIND () {
   if (wWIND_U_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_U_A\n"); exit(-1);}
   wWIND_V_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
   if (wWIND_V_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_V_A\n"); exit(-1);}
-  wWIND_V_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
+  wWIND_W_A = malloc (wN2D * ip_nMLEVELS * sizeof(float));
   if (wWIND_W_A==NULL) {fprintf(stderr, "wind.c : Cannot allocate wWIND_W_A\n"); exit(-1);}
   
   
