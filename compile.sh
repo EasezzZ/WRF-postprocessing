@@ -25,7 +25,7 @@ gcc $OPT -c src/fields/geopotential/geopotential.c || exit
 gcc $OPT -c src/func/interpolation.c || exit
 gcc $OPT -c src/func/calc_uvmet.c || exit
 gcc $OPT -c src/fields/temp/temp.c || exit
-gcc $OPT -c src/fields/temp/tc2.c || exit
+gcc $OPT -c src/fields/temp/temp2m.c || exit
 gcc $OPT -c src/fields/rain/rain.c || exit
 gcc $OPT -c src/fields/humidity/rh.c || exit
 gcc $OPT -c src/fields/wind/wind.c || exit

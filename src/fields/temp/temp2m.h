@@ -6,9 +6,9 @@
 #include "../../io/ncout.h"
 
 
-float *wTC2;
-int idTC2;
+float *wTEMP2M;
+int idTEMP2M;
 
-void load_TC2 ();
-void free_TC2 ();
-void write_TC2 ();
+void load_TEMP2M ();
+void free_TEMP2M ();
+void write_TEMP2M ();

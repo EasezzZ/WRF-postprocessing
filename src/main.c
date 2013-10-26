@@ -14,10 +14,10 @@ int main(int argc, char *argv[]) {
   load_MODEL_LEVEL();
   load_TOPO();
   load_PBLH();
-  load_TC2();
   load_PRESS();
   load_GEOPOTENTIAL();
   load_TEMP();
+  load_TEMP2M();
   load_RAIN();
   load_RH();
   load_WIND();
@@ -36,10 +36,10 @@ int main(int argc, char *argv[]) {
   set_meta_ip_levels();
   set_meta_TOPO ();
   set_meta_PBLH ();
-  set_meta_TC2 ();
   set_meta_PRESS ();
   set_meta_GEOPOTENTIAL ();
   set_meta_TEMP ();
+  set_meta_TEMP2M ();
   set_meta_RAIN ();
   set_meta_RH ();
   set_meta_WIND ();
@@ -55,10 +55,10 @@ int main(int argc, char *argv[]) {
   write_ip_levels();
   write_TOPO();
   write_PBLH();
-  write_TC2();
   write_PRESS();
   write_GEOPOTENTIAL();
   write_TEMP();
+  write_TEMP2M();
   write_RAIN();
   write_RH();
   write_WIND();
@@ -73,10 +73,10 @@ int main(int argc, char *argv[]) {
   free_MODEL_LEVEL();
   free_TOPO();
   free_PBLH();
-  free_TC2();
   free_PRESS();
   free_GEOPOTENTIAL();
   free_TEMP();
+  free_TEMP2M();
   free_RAIN();
   free_RH();
   free_WIND();
