@@ -47,7 +47,7 @@ void ncout_open () {
   ncout_set_meta (NC_GLOBAL, "institution", "OpenMeteoData http://openmeteodata.org");
   ncout_set_meta (NC_GLOBAL, "source", "WRF-ARW initialized from NCEP GFS + OMD Post-processing");
   //ncout_set_meta (NC_GLOBAL, "history", "");
-  ncout_set_meta (NC_GLOBAL, "references", "http://wiki.openmeteodata.org/wiki/OMD_WRF");
+  ncout_set_meta (NC_GLOBAL, "references", "http://wiki.openmeteodata.org/wiki/OMD_Forecasts");
   //ncout_set_meta (NC_GLOBAL, "comment", "");
   ncout_set_meta (NC_GLOBAL, "conventions", "CF-1.6");
   ncout_set_meta (NC_GLOBAL, "license", "ODC-By http://opendatacommons.org/licenses/by/summary/");
