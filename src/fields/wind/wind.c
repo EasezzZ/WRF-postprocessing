@@ -41,8 +41,8 @@ void load_WIND () {
   
   nc_error(nc_get_var_float(wrfout_id, u_id, wU_raw));
   nc_error(nc_get_var_float(wrfout_id, v_id, wV_raw));
-  nc_error(nc_get_var_float(wrfout_id, v_id, wW_raw));
-  
+  nc_error(nc_get_var_float(wrfout_id, w_id, wW_raw));
+ 
   // unstagger
   int x, y, z;
   int i, iu, iv;
