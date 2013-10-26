@@ -12,6 +12,7 @@ float *wsPHB;
 float *wGEOPOTENTIAL;
 float *wGEOPOTENTIAL_P;
 float *wHEIGHT;
+float *wHEIGHT_STAG;
 
 int idGEOPOTENTIAL;
 int idGEOPOTENTIAL_P;

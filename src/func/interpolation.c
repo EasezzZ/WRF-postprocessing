@@ -19,6 +19,15 @@ void set_meta_ip_levels () {
 
 
 void interpolate_3d_z (float *data3d, float ip_level, float *levels, float *data2d) {
+  _interpolate_3d_z (data3d, ip_level, levels, data2d, IP_NOSTAGGER);
+}
+
+void interpolate_3d_zstag (float *data3d, float ip_level, float *levels, float *data2d) {
+  _interpolate_3d_z (data3d, ip_level, levels, data2d, IP_STAGGER);
+}
+
+
+void _interpolate_3d_z (float *data3d, float ip_level, float *levels, float *data2d, int is_stagger) {
   
   int interp;
   int kp;
@@ -41,7 +50,11 @@ void interpolate_3d_z (float *data3d, float ip_level, float *levels, float *data
     // initialise to MISSING
     data2d[i] = NC_FILL_FLOAT; 
     interp = 0;
-    kp = wNZ;
+    if (is_stagger) { 
+      kp = wNZS;
+    } else {
+      kp = wNZ;      
+    }
     
     while ( !interp && (kp >= 2) ) {
       size_t ixm = i+wN2D*(kp-im);

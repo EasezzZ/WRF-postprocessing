@@ -4,6 +4,8 @@
 #include "../io/wrfout.h"
 #include "../io/ncout.h"
 
+#define IP_NOSTAGGER 0
+#define IP_STAGGER 1
 
 static const float ip_PLEVELS[] = {1000, 975, 950, 925, 900, 875, 850, 825, 800,
                                    775, 750, 725, 700, 675, 650, 625, 600, 575,
@@ -27,5 +29,7 @@ void write_ip_levels ();
 void set_meta_ip_levels ();
 
 void interpolate_3d_z (float *data3d, float ip_level, float *levels, float *data2d);
+void interpolate_3d_zstag (float *data3d, float ip_level, float *levels, float *data2d);
+void _interpolate_3d_z (float *data3d, float ip_level, float *levels, float *data2d, int is_stagger);
 
 #endif

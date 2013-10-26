@@ -25,6 +25,9 @@ void load_GEOPOTENTIAL () {
   wHEIGHT = malloc (wN3D * sizeof(float));
   if (wHEIGHT==NULL) {fprintf(stderr, "geopotential.c : Cannot allocate wHEIGHT\n"); exit(-1);} 
   
+  wHEIGHT_STAG = malloc (n_stag_vals * sizeof(float));
+  if (wHEIGHT_STAG==NULL) {fprintf(stderr, "geopotential.c : Cannot allocate wHEIGHT_STAG\n"); exit(-1);}
+  
   wGEOPOTENTIAL_P = malloc (wN2D * ip_nPLEVELS * sizeof(float));
   if (wGEOPOTENTIAL_P==NULL) {fprintf(stderr, "geopotential.c : Cannot allocate wGEOPOTENTIAL_P\n"); exit(-1);}  
   
@@ -37,6 +40,10 @@ void load_GEOPOTENTIAL () {
     wGEOPOTENTIAL[i] = 0.5 * (wsPHB[i]+wsPHB[i+wN2D]+wsPH[i]+wsPH[i+wN2D]);
     // geopotential height = geopotential / 9.81
     wHEIGHT[i] = wGEOPOTENTIAL[i] / 9.81;
+  }
+  
+  for (i=0; i<n_stag_vals; i++) {
+    wHEIGHT_STAG[i] = (wsPHB[i]+wsPH[i])/9.81;
   }
   
   for (i=0; i<ip_nPLEVELS; i++) {
@@ -93,6 +100,7 @@ void free_GEOPOTENTIAL () {
   free (wsPHB);
   free (wGEOPOTENTIAL);
   free (wHEIGHT);
+  free (wHEIGHT_STAG);
   free (wGEOPOTENTIAL_P);
   
 }
