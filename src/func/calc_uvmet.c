@@ -91,14 +91,9 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
       for (x=0; x<wNX; x++) {
 	size_t i = x+y*wNX;
 
-	  if (u[i]==NC_FILL_FLOAT || v[i]==NC_FILL_FLOAT) {
-	    umet[i] = NC_FILL_FLOAT;
-	    vmet[i] = NC_FILL_FLOAT;
-	  } else {
-	    umet[i] = v[i]*longcb[i] + u[i]*longca[i];
-	    vmet[i] = v[i]*longca[i] - u[i]*longcb[i];
-	  }
-	
+	umet[i] = v[i]*longcb[i] + u[i]*longca[i];
+	vmet[i] = v[i]*longca[i] - u[i]*longcb[i];
+    
       }
     }
     
@@ -110,13 +105,8 @@ void uvmet_calc (float *u, float *v, float *umet, float *vmet, int ndims) {
 	  size_t i = x+y*wNX+z*wN2D;
 	  size_t i2d = x+y*wNX;
 
-	    if (u[i]==NC_FILL_FLOAT || v[i]==NC_FILL_FLOAT) {
-	      umet[i] = NC_FILL_FLOAT;
-	      vmet[i] = NC_FILL_FLOAT;
-	    } else {
-	    umet[i] = v[i]*longcb[i2d] + u[i]*longca[i2d];
-	    vmet[i] = v[i]*longca[i2d] - u[i]*longcb[i2d];
-	    }
+	  umet[i] = v[i]*longcb[i2d] + u[i]*longca[i2d];
+	  vmet[i] = v[i]*longca[i2d] - u[i]*longcb[i2d];
 	  
 	}
       }

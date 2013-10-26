@@ -23,10 +23,10 @@ void set_meta_MODEL_LEVEL () {
   
   ncout_def_var_float("model_level", 1, ncout_1DZ_DIM, &idMODEL_LEVEL);
 
-  ncout_set_meta (idMODEL_LEVEL, "long_name", "model_ETA_levels");
+  ncout_set_meta (idMODEL_LEVEL, "long_name", "model_sigma_levels");
   ncout_set_meta (idMODEL_LEVEL, "standard_name", "");
   ncout_set_meta (idMODEL_LEVEL, "description", "Vertical levels of the model grid");
-  ncout_set_meta (idMODEL_LEVEL, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/grid/model_level.c");
+  ncout_set_meta (idMODEL_LEVEL, "reference", "http://doc.omd.li/wrfpp/model_level");
   ncout_set_meta (idMODEL_LEVEL, "units", "");
   ncout_set_meta (idMODEL_LEVEL, "coordinates", "model_level");
   // TODO : ncout_set_meta (idLON, "_CoordinateAxisType", "Sigma");

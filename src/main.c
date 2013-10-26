@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
   load_RAIN();
   load_RH();
   load_WIND();
+  load_CLOUD();
   
 //  load_UV10();
   
@@ -29,6 +30,7 @@ int main(int argc, char *argv[]) {
   
   fprintf(stdout, "== Setting metadata ==\n");
   set_meta_LATLON ();
+  set_meta_LAMBERT();
   set_meta_MODEL_LEVEL ();
   set_meta_ip_levels();
   set_meta_TOPO ();
@@ -40,6 +42,7 @@ int main(int argc, char *argv[]) {
   set_meta_RAIN ();
   set_meta_RH ();
   set_meta_WIND ();
+  set_meta_CLOUD ();
   
   
   ncout_enddef();
@@ -57,6 +60,7 @@ int main(int argc, char *argv[]) {
   write_RAIN();
   write_RH();
   write_WIND();
+  write_CLOUD();
   
 //  write_UV10();
 //  write_UV10_pol();
@@ -73,6 +77,7 @@ int main(int argc, char *argv[]) {
   free_RAIN();
   free_RH();
   free_WIND();
+  free_CLOUD();
 //  free_UV10();
   
   fprintf(stdout, "== Closing files ==\n");

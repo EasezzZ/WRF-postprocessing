@@ -30,7 +30,9 @@ char *wDOMAIN;
 char *wRUN;
 char *wRUN_START;
 char *wFRAME;
-char *wFRAME_LAST;
+int  wFRAME_N;
+int  wFRAME_N_LAST;
+char *wFRAME_N_STR;
 
 void wrfout_open (int argc, char *argv[]);
 void wrfout_close ();

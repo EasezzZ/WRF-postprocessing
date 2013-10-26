@@ -20,7 +20,7 @@ void load_RAIN () {
   
   int i;
   
-  if (wFRAME_LAST != NULL) {
+  if (wFRAME_N_LAST >= 0) {
     fprintf(stdout, "Getting accumulated rain values from previous file\n");
     
     int rain_last_id;
@@ -38,6 +38,7 @@ void load_RAIN () {
     nc_error(nc_get_var_float(wrfout_last_id, rain_last_id, wRAIN_LAST));
     nc_error(nc_get_var_float(wrfout_last_id, rainc_last_id, wRAINC_LAST));
     
+    #pragma omp parallel for private(i)
     for (i=0; i<wN2D; i++) {
       wRAIN[i] -= wRAIN_LAST[i];
       wRAINC[i] -= wRAINC_LAST[i];
@@ -49,7 +50,6 @@ void load_RAIN () {
   } else {
     fprintf(stderr, "rain.c : WARNING : no previous rain. Using raw values.\n");
   }
-  
   for (i=0; i<wN2D; i++) {
     wRAIN[i] += wRAINC[i];
   }
@@ -68,17 +68,17 @@ void set_meta_RAIN () {
   ncout_def_var_float("rain", 2, ncout_2D_DIMS, &idRAIN);
   ncout_def_var_float("rainc", 2, ncout_2D_DIMS, &idRAINC);
 
-  ncout_set_meta (idRAIN, "long_name", "rainfall_accumulated");
+  ncout_set_meta (idRAIN, "long_name", "rainfall_over_last_hour");
   ncout_set_meta (idRAIN, "standard_name", "");
   ncout_set_meta (idRAIN, "description", "Total rainfall accumulated over last hour. Convective rainfall is included.");
-  ncout_set_meta (idRAIN, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/rain/rain.c");
+  ncout_set_meta (idRAIN, "reference", "http://doc.omd.li/wrfpp/rain");
   ncout_set_meta (idRAIN, "units", "mm h-1");
   ncout_set_meta (idRAIN, "coordinates", "lon lat");
   
-  ncout_set_meta (idRAINC, "long_name", "convective_rainfall_accumulated");
+  ncout_set_meta (idRAINC, "long_name", "convective_rainfall_over_last_hour");
   ncout_set_meta (idRAINC, "standard_name", "");
   ncout_set_meta (idRAINC, "description", "Rainfall from convective clouds accumulated over last hour");
-  ncout_set_meta (idRAINC, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/rain/rain.c");
+  ncout_set_meta (idRAINC, "reference", "http://doc.omd.li/wrfpp/rainc");
   ncout_set_meta (idRAINC, "units", "mm h-1");
   ncout_set_meta (idRAINC, "coordinates", "lon lat");
   

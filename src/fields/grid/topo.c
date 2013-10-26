@@ -26,7 +26,7 @@ void set_meta_TOPO () {
   ncout_set_meta (idTOPO, "long_name", "model_terrain_elevation");
   ncout_set_meta (idTOPO, "standard_name", "");
   ncout_set_meta (idTOPO, "description", "Terrain elevation above mean sea level, as seen by the numerical model. Terrain is smoothed to the model's grid resolution.");
-  ncout_set_meta (idTOPO, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/grid/topo.c");
+  ncout_set_meta (idTOPO, "reference", "http://doc.omd.li/wrfpp/topo");
   ncout_set_meta (idTOPO, "units", "m");
   ncout_set_meta (idTOPO, "coordinates", "lon lat");
   

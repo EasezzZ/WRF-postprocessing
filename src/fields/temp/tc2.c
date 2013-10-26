@@ -32,7 +32,7 @@ void set_meta_TC2 () {
   ncout_set_meta (idTC2, "long_name", "air_temperature_2m_above_surface");
   ncout_set_meta (idTC2, "standard_name", "air_temperature_2m_above_surface");
   ncout_set_meta (idTC2, "description", "2m Air temperature is the bulk temperature of the air, 2 meters above surface. ");
-  ncout_set_meta (idTC2, "reference", "https://github.com/OpenMeteoData/WRF-postprocessing/blob/master/src/fields/temp/tc2.c");
+  ncout_set_meta (idTC2, "reference", "http://doc.omd.li/wrfpp/tc2");
   ncout_set_meta (idTC2, "units", "degree_Celsius");
   ncout_set_meta (idTC2, "coordinates", "lon lat");
   
