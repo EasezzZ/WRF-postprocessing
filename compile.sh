@@ -29,6 +29,7 @@ gcc $OPT -c src/fields/temp/tc2.c || exit
 gcc $OPT -c src/fields/rain/rain.c || exit
 gcc $OPT -c src/fields/humidity/rh.c || exit
 gcc $OPT -c src/fields/wind/wind.c || exit
+gcc $OPT -c src/fields/wind/wind10m.c || exit
 gcc $OPT -c src/fields/cloud/cloud.c || exit
 
 

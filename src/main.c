@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
   load_RAIN();
   load_RH();
   load_WIND();
+  load_WIND10M();
   load_CLOUD();
   
 //  load_UV10();
@@ -42,6 +43,7 @@ int main(int argc, char *argv[]) {
   set_meta_RAIN ();
   set_meta_RH ();
   set_meta_WIND ();
+  set_meta_WIND10M ();
   set_meta_CLOUD ();
   
   
@@ -60,6 +62,7 @@ int main(int argc, char *argv[]) {
   write_RAIN();
   write_RH();
   write_WIND();
+  write_WIND10M();
   write_CLOUD();
   
 //  write_UV10();
@@ -77,6 +80,7 @@ int main(int argc, char *argv[]) {
   free_RAIN();
   free_RH();
   free_WIND();
+  free_WIND10M();
   free_CLOUD();
 //  free_UV10();
   
