@@ -4,5 +4,6 @@
 
 #include "../../io/wrfout.h"
 #include "../../io/ncout.h"
+#include "latlon.h"
 
 void set_meta_LAMBERT ();

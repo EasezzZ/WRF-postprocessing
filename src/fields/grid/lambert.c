@@ -43,6 +43,11 @@ void set_meta_LAMBERT () {
   nc_get_att_float(wrfout_id, NC_GLOBAL, "CEN_LON", &att[0]);
   nc_put_att_float(ncout_ID, idLAMBERT, "grid_center_lon", NC_FLOAT, 1, att);
   
+  att[0] = wLAT[0];
+  nc_put_att_float(ncout_ID, idLAMBERT, "sw_corner_lat", NC_FLOAT, 1, att);
+  att[0] = wLON[0];
+  nc_put_att_float(ncout_ID, idLAMBERT, "sw_corner_lon", NC_FLOAT, 1, att);
+  
   ncout_set_meta (idLAMBERT, "reference", "http://doc.omd.li/wrfpp/lambert_conformal");
 
 
