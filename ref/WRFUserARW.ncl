@@ -742,6 +742,10 @@ begin
          end if
 
          cone = 1.
+         
+         ;=======================WRONG Equations for calculating cone=================================
+         ;Comment by Yixuan Zheng, 2015/01/30
+         ;============================================================================================
          if( map_projection .eq. 1) then    ; Lambert Conformal mapping
            if( (fabs(true_lat1 - true_lat2) .gt. 0.1) .and.  \
                (fabs(true_lat2 - 90. )      .gt. 0.1)       ) then
